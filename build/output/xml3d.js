@@ -20,7 +20,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-@version: 4.9.0
+@version: 4.9.1
 **/
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /**
@@ -9266,7 +9266,7 @@ var Xflow = Xflow || {};
 window.XML3D = XML3D;
 window.Xflow = Xflow;
 
-XML3D.version = '4.9.0';
+XML3D.version = '4.9.1';
 /** @const */
 XML3D.xml3dNS = 'http://www.xml3d.org/2009/xml3d';
 /** @const */
@@ -9369,13 +9369,22 @@ XML3D.extend(Xflow, require("./xflow/interface/graph.js"));
 XML3D.extend(Xflow, require("./xflow/interface/data.js"));
 Xflow.ComputeRequest = require("./xflow/interface/request.js").ComputeRequest;
 
+XML3D.webgl = XML3D.webgl || {};
+XML3D.webgl.FullscreenQuad = require("./renderer/webgl/base/fullscreenquad.js");
+XML3D.webgl.BaseRenderPass = require("./renderer/webgl/render-passes/base.js");
+XML3D.webgl.ForwardRenderPass = require("./renderer/webgl/render-passes/forward.js");
+XML3D.webgl.BaseRenderTree = require("./renderer/webgl/render-trees/base.js");
+XML3D.extend(XML3D.webgl, require("./renderer/webgl/base/rendertarget.js"));
+
+
 require("./xflow/operator/default");
 
 module.exports = {
     XML3D : XML3D,
     Xflow : Xflow
 };
-},{"./base/resourcemanager.js":10,"./math/bbox.js":38,"./math/math.js":39,"./renderer/webgl/materials/urn/shaders.js":94,"./types/box.js":121,"./types/data-observer.js":122,"./types/matrix.js":123,"./types/ray.js":124,"./types/rotation.js":125,"./types/vec3.js":126,"./utils/debug.js":130,"./utils/misc.js":131,"./utils/options.js":132,"./utils/webcl.js":134,"./xflow/interface/constants.js":136,"./xflow/interface/data.js":137,"./xflow/interface/graph.js":138,"./xflow/interface/request.js":139,"./xflow/operator/default":156,"./xflow/operator/operator.js":176,"gl-matrix":1}],30:[function(require,module,exports){
+
+},{"./base/resourcemanager.js":10,"./math/bbox.js":38,"./math/math.js":39,"./renderer/webgl/base/fullscreenquad.js":74,"./renderer/webgl/base/rendertarget.js":77,"./renderer/webgl/materials/urn/shaders.js":94,"./renderer/webgl/render-passes/base.js":99,"./renderer/webgl/render-passes/forward.js":101,"./renderer/webgl/render-trees/base.js":110,"./types/box.js":121,"./types/data-observer.js":122,"./types/matrix.js":123,"./types/ray.js":124,"./types/rotation.js":125,"./types/vec3.js":126,"./utils/debug.js":130,"./utils/misc.js":131,"./utils/options.js":132,"./utils/webcl.js":134,"./xflow/interface/constants.js":136,"./xflow/interface/data.js":137,"./xflow/interface/graph.js":138,"./xflow/interface/request.js":139,"./xflow/operator/default":156,"./xflow/operator/operator.js":176,"gl-matrix":1}],30:[function(require,module,exports){
 var XML3D = require("./global.js").XML3D;
 var Config = require("./interface/elements.js").config;
 var sendAdapterEvent = require("./utils/misc.js").sendAdapterEvent;
@@ -13834,7 +13843,11 @@ LightManager.prototype = {
             var model = light.model;
             var entry = that.getModelEntry(model.id);
             var offset = entry.lightModels.indexOf(model);
-            XML3D.debug.assert(offset != -1, "Light values changed for a light that is not managed by this LightManager");
+            if (offset < 0) {
+                //These changes are for a light that no longer exists so we can ignore them
+                //This can happen for ex. during a delayed change notification that isn't fired until after a remove()
+                return;
+            }
             model.fillLightParameters(entry.parameters, offset);
             model.getLightData(entry.parameters, offset);
             entry.changed = true;
@@ -27990,6 +28003,13 @@ Object.defineProperty(DataNode.prototype, "userData", {
 DataNode.prototype.setLoading = function(loading){
     if(this._loading != loading){
         this._loading = loading;
+        this._channelNode.setStructureOutOfSync();
+        this._channelNode.loading = loading;
+        for (var sub in this._substitutionNodes) {
+            var subNode = this._substitutionNodes[sub];
+            subNode.setStructureOutOfSync();
+            subNode.loading = loading;
+        }
         updateProgressLevel(this);
         Base._flushResultCallbacks();
     }
