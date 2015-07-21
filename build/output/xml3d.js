@@ -20,7 +20,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-@version: 4.9.2
+@version: 4.9.3
 **/
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /**
@@ -10862,7 +10862,7 @@ var Xflow = Xflow || {};
 window.XML3D = XML3D;
 window.Xflow = Xflow;
 
-XML3D.version = '4.9.2';
+XML3D.version = '4.9.3';
 /** @const */
 XML3D.xml3dNS = 'http://www.xml3d.org/2009/xml3d';
 /** @const */
@@ -11198,21 +11198,27 @@ function resolveMutations(mutations){
     for(var i = 0; i < mutations.length; ++i){
         var mutation = mutations[i];
         if(mutation.type == 'childList'){
-            var addedNodes = mutation.addedNodes;
-            var j = addedNodes.length;
-            while(j--){
-                if(addedNodes[j].tagName == "xml3d")
-                    initXML3DElement(addedNodes[j]);
-            }
-            var removedNodes = mutation.removedNodes;
-            var j = removedNodes.length;
-            while(j--) {
-                if(removedNodes[j].tagName == "xml3d")
-                    destroyXML3DElement(removedNodes[j]);
-            }
-
+            mapFunctionOnXML3DElements(mutation.addedNodes, initXML3DElement);
+            mapFunctionOnXML3DElements(mutation.removedNodes, destroyXML3DElement);
         }
     }
+}
+
+function mapFunctionOnXML3DElements(elementList, fun) {
+    Array.forEach(elementList, function(element) {
+        if (!element.getElementsByTagNameNS) {
+            // These elements are leaf nodes (eg. TEXT) so we can ignore them
+            return;
+        }
+        if (element.tagName === "xml3d") {
+            fun(element);
+            // An XML3D element can't have further XML3D elements as children
+            return;
+        }
+        // For cases where an XML3D element might inside the subtree of the added node
+        var xml3dElems = element.getElementsByTagNameNS(XML3D.xml3dNS, "xml3d");
+        Array.forEach(xml3dElems, fun);
+    });
 }
 
 function flushObserver(){
@@ -36336,13 +36342,13 @@ VSConfig.prototype.getOperator = function(){
         return c_vs_operator_cache[key];
 
     var outputs = [], params = [], glslCode = "\t// VS Connector\n";
-    name = "VSConnect";
-    for(var name in this._attributes){
-        var attr = this._attributes[name];
+    var name = "VSConnect";
+    for(var attributeName in this._attributes){
+        var attr = this._attributes[attributeName];
         var type = C.getTypeName(attr.type);
-        outputs.push( { type: type, name: name} );
-        params.push( { type: type, source: name, optional: attr.optional} );
-        name += "T" + type + "N" + name + "O" + attr.optional + ".";
+        outputs.push( { type: type, name: attributeName} );
+        params.push( { type: type, source: attributeName, optional: attr.optional} );
+        name += "T" + type + "N" + attributeName + "O" + attr.optional + ".";
     }
     var operator = initAnonymousOperator(name,
     {
