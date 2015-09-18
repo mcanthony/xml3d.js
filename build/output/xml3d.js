@@ -20,7 +20,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-@version: 4.9.3
+@version: 4.9.4
 **/
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /**
@@ -6168,6 +6168,7 @@ module.exports = function () {
 },{"_process":13}],19:[function(require,module,exports){
 var Set = require("../xflow/utils/utils.js").set;
 var DataNode = require("../xflow/interface/graph.js").DataNode;
+var Base = require("../xflow/base.js");
 
 function AssetError(message, node){
     this.message = message;
@@ -6328,6 +6329,15 @@ Asset.prototype.addChangeListener = function(listener){
 };
 Asset.prototype.removeChangeListener = function(listener){
     Set.remove(this.listener, listener);
+    if (!this.listener.length) {
+        this.dispose();
+    }
+};
+
+Asset.prototype.dispose = function() {
+    this.assetResult.dispose();
+    this.clearSubAssets();
+    this.clearChildren();
 };
 
 Asset.prototype.getResult = function(){
@@ -6529,6 +6539,16 @@ AssetResult.prototype.construct = function(asset){
     constructAssetTable(this, asset);
 };
 
+AssetResult.prototype.dispose = function() {
+    for (var i = 0; i < this.allEntries.length; i++) {
+        this.allEntries[i].dispose();
+    }
+
+    for (var i = 0; i < this.allSubResults.length; i++) {
+        this.allSubResults[i].dispose();
+    }
+};
+
 AssetResult.prototype.getDataTree = function(){
     return rec_getDataTree(this);
 };
@@ -6713,17 +6733,17 @@ function updateAccumulatedNode(table, entry){
         return;
 
     if(entry.accumulatedXflowNode){
-        entry.accumulatedXflowNode.clearChildren();
+        entry.accumulatedXflowNode.clear();
         entry.accumulatedXflowNode.setCompute("");
         entry.accumulatedXflowNode.setFilter("");
         entry.accumulatedXflowNode.dataflowNode = null;
         entry.accumulatedXflowNode.setLoading(false);
     }
     else{
-        entry.accumulatedXflowNode = new DataNode(false);
+        entry.accumulatedXflowNode = new AssetDataNode(false);
     }
 
-    var dataNode = entry.postQueue.length == 1 ? entry.accumulatedXflowNode : new DataNode(false);
+    var dataNode = entry.postQueue.length == 1 ? entry.accumulatedXflowNode : new AssetDataNode(false);
     for(var i = 0; i < entry.postQueue.length; ++i){
         var includes = entry.postQueue[i].includes;
         for(var j = 0; j < includes.length; ++j){
@@ -6736,7 +6756,7 @@ function updateAccumulatedNode(table, entry){
     var node = dataNode, parentNode = null;
     for(var i = 0; i < entry.postQueue.length; ++i){
         var postEntry = entry.postQueue[i];
-        if(!node) node = (i == entry.postQueue.length - 1 ? entry.accumulatedXflowNode : new DataNode(false));
+        if(!node) node = (i == entry.postQueue.length - 1 ? entry.accumulatedXflowNode : new AssetDataNode(false));
         node.setCompute(postEntry.compute);
         node.setFilter(postEntry.filter);
         node.dataflowNode = postEntry.dataflow;
@@ -6810,6 +6830,34 @@ function AssetTableEntry (subData){
 AssetTableEntry.prototype.isMesh = function(){
     return !!this.meshType;
 };
+
+/**
+ * Clears child<->parent relationships for all Xflow nodes that were created for this Asset instance specifically (eg through overrides)
+ */
+AssetTableEntry.prototype.dispose = function() {
+    clearAssetRelatedChildren(this.accumulatedXflowNode);
+    this.accumulatedXflowNode.clear();
+};
+
+/**
+ * This function clears parent->child and dataFlowNode relationships for all xflow nodes
+ * that were generated for the AssetTableEntry that it's called from initially. It won't clear
+ * relationships for any normal DataNodes that are part of non-asset-related Xflow graphs (ie. dataflow graphs)
+ * @param dataNode
+ */
+function clearAssetRelatedChildren(dataNode) {
+    if (dataNode._children === undefined) {
+        return; //Input leaf node, nothing to do here
+    }
+    for (var i = 0; i < dataNode._children.length; i++) {
+        clearAssetRelatedChildren(dataNode._children[i]);
+    }
+    if (dataNode.isAssetDataNode) {
+        dataNode.clear();
+        dataNode._channelNode.setStructureOutOfSync();
+    }
+}
+
 
 AssetTableEntry.prototype.pushTableEntry = function(srcEntry){
     this.name = srcEntry.name;
@@ -6895,13 +6943,26 @@ AssetPickFilter.prototype.check = function(entry){
     return (entry.name && this.names.indexOf(entry.name) != -1);
 };
 
+/**
+ * This is just a small wrapper to identify Xflow nodes that were created by an Asset, eg as part of overrides
+ * that need to be cleaned up later if the corresponding model tag is destroyed
+ * @param isDataFlow
+ * @constructor
+ */
+var AssetDataNode = function(isDataFlow) {
+    DataNode.call(this, isDataFlow);
+    this.isAssetDataNode = true;
+};
+
+Base.createClass(AssetDataNode, DataNode);
+
 module.exports = {
     Asset: Asset,
     SubData: SubData,
     AssetResult: AssetResult
 };
 
-},{"../xflow/interface/graph.js":151,"../xflow/utils/utils.js":200}],20:[function(require,module,exports){
+},{"../xflow/base.js":148,"../xflow/interface/graph.js":151,"../xflow/utils/utils.js":200}],20:[function(require,module,exports){
 var registerFactory = require("./resourcemanager.js").registerFactory;
 var Resource = require("./resourcemanager.js").Resource;
 var Events = require("../interface/notification.js");
@@ -7698,13 +7759,13 @@ function setDocumentData(httpRequest, url, mimetype) {
         response = JSON.parse(httpRequest.responseText);
     } else if (cleanedMimetype.match(/xml/)) {
         response = httpRequest.responseXML;
-        //Workaround for IE "bug" where external documents always report their document.URL as being identical to window.location.href
-        response._documentURL = url;
         if (!response) {
             XML3D.debug.logError("Invalid external XML document '" + httpRequest._url +
-                "': XML Syntax error");
+                "': XML Syntax error or the request did not succeed.");
             return;
         }
+        //Workaround for IE "bug" where external documents always report their document.URL as being identical to window.location.href
+        response._documentURL = url;
     } else if (cleanedMimetype == "application/octet-stream" || mimetype == "text/plain; charset=x-user-defined") {
         XML3D.debug.logError("Possibly wrong loading of resource " + url + ". Mimetype is " + mimetype + " but response is not an ArrayBuffer");
         response = httpRequest.response;
@@ -9079,6 +9140,7 @@ module.exports = StateMachine;
 },{}],28:[function(require,module,exports){
 var DOMTransformFetcher = require("../transform-fetcher.js");
 var DataAdapter = require("./data.js");
+var Base = require("../../xflow/base.js");
 var DataNode = require("../../xflow/interface/graph.js").DataNode;
 var getComputeDataflowUrl = require("../../xflow/interface/graph.js").getComputeDataflowUrl;
 var Asset = require("../../asset/asset.js").Asset;
@@ -9222,6 +9284,7 @@ AssetAdapter.prototype.notifyChanged = function (evt) {
 
     } else if (evt.type == Events.THIS_REMOVED) {
         this.clearAdapterHandles();
+        this.asset.removeChangeListener(this);
     }
 };
 
@@ -9237,7 +9300,7 @@ createClass(AssetDataAdapter, DataAdapter);
 
 AssetDataAdapter.prototype.init = function () {
     DataAdapter.prototype.init.call(this);
-    this.outputXflowNode = new DataNode(false);
+    this.outputXflowNode = new AssetDataNode(false);
     this.assetEntry = new SubData(this.outputXflowNode, this.getXflowNode(), this.node);
     this.assetEntry.setName(this.node.getAttribute("name"));
     updateClassNames(this);
@@ -9364,11 +9427,24 @@ AssetMeshAdapter.prototype.notifyChanged = function (evt) {
     }
 };
 
+/**
+ * This is just a small wrapper to identify Xflow nodes that were created by an Asset, eg as part of overrides
+ * that need to be cleaned up later if the corresponding model tag is destroyed
+ * @param isDataFlow
+ * @constructor
+ */
+var AssetDataNode = function(isDataFlow) {
+    DataNode.call(this, isDataFlow);
+    this.isAssetDataNode = true;
+};
+
+Base.createClass(AssetDataNode, DataNode);
+
 module.exports = {
     AssetAdapter: AssetAdapter, AssetMeshAdapter: AssetMeshAdapter, AssetDataAdapter: AssetDataAdapter
 };
 
-},{"../../asset/asset.js":19,"../../base/adapter.js":20,"../../base/adapterhandle.js":21,"../../base/resourcemanager.js":23,"../../interface/notification.js":49,"../../utils/misc.js":144,"../../xflow/interface/graph.js":151,"../transform-fetcher.js":41,"./data.js":31}],29:[function(require,module,exports){
+},{"../../asset/asset.js":19,"../../base/adapter.js":20,"../../base/adapterhandle.js":21,"../../base/resourcemanager.js":23,"../../interface/notification.js":49,"../../utils/misc.js":144,"../../xflow/base.js":148,"../../xflow/interface/graph.js":151,"../transform-fetcher.js":41,"./data.js":31}],29:[function(require,module,exports){
 var ComputeRequest = require("../../xflow/interface/request.js").ComputeRequest;
 var setShaderConstant = require("../../xflow/processing/vs-connect.js").setShaderConstant;
 var registerErrorCallback = require("../../xflow/base.js").registerErrorCallback;
@@ -9488,6 +9564,7 @@ var XC = require("../../xflow/interface/constants.js");
 var Events = require("../../interface/notification.js");
 var dispatchCustomEvent = require("../../utils/misc.js").dispatchCustomEvent;
 var AdapterHandle = require("../../base/adapterhandle.js");
+var Base = require("../../xflow/base.js");
 
 /**
  * The DataAdapter implements the
@@ -9676,6 +9753,7 @@ DataAdapter.prototype.connectedAdapterChanged = function (key, adapter /*, statu
     } else if (this.externalScripts[key]) {
         window.eval(adapter.script);
         this.xflowDataNode.notify(XC.RESULT_STATE.CHANGED_STRUCTURE);
+        Base._flushResultCallbacks();
     }
     // Cycle the load state to force a load event even if the new sourceNode is cached
     this.xflowDataNode.setLoading(true);
@@ -9736,12 +9814,13 @@ module.exports = DataAdapter;
 
 
 
-},{"../../base/adapterhandle.js":21,"../../interface/notification.js":49,"../../utils/misc.js":144,"../../xflow/interface/constants.js":149,"../../xflow/interface/graph.js":151,"./base.js":29}],32:[function(require,module,exports){
+},{"../../base/adapterhandle.js":21,"../../interface/notification.js":49,"../../utils/misc.js":144,"../../xflow/base.js":148,"../../xflow/interface/constants.js":149,"../../xflow/interface/graph.js":151,"./base.js":29}],32:[function(require,module,exports){
 var BaseDataAdapter = require("./base.js");
 var DataNode = require("../../xflow/interface/graph.js").DataNode;
 var XC = require("../../xflow/interface/constants.js");
 var Events = require("../../interface/notification.js");
 var AdapterHandle = require("../../base/adapterhandle.js");
+var Base = require("../../xflow/base.js");
 
 /**
  * DataAdapter handling a <dataflow> element
@@ -9788,6 +9867,7 @@ DataflowDataAdapter.prototype.notifyChanged = function (evt) {
             window.eval(evt.adapter.script);
             setLoadingStateForMatchingXflowNodes(this.xflowDataNode, evt.key, false);
             this.xflowDataNode.notify(XC.RESULT_STATE.CHANGED_STRUCTURE);
+            Base._flushResultCallbacks();
         }
     }
 
@@ -9861,7 +9941,7 @@ function updateDataflowXflowNode(adapter, node) {
     // Getting platform and node type information for a Dataflow node
     var platform = node.getAttribute("platform");
 
-    adapter.xflowDataNode.clearChildren();
+    adapter.xflowDataNode.clear();
     adapter.xflowDataNode.setCompute("");
     adapter.clearAdapterHandles();
     adapter.dataflowRefs = [];
@@ -9942,7 +10022,7 @@ function updateDataflowXflowNode(adapter, node) {
 
 module.exports = DataflowDataAdapter;
 
-},{"../../base/adapterhandle.js":21,"../../interface/notification.js":49,"../../xflow/interface/constants.js":149,"../../xflow/interface/graph.js":151,"./base.js":29}],33:[function(require,module,exports){
+},{"../../base/adapterhandle.js":21,"../../interface/notification.js":49,"../../xflow/base.js":148,"../../xflow/interface/constants.js":149,"../../xflow/interface/graph.js":151,"./base.js":29}],33:[function(require,module,exports){
 var NodeAdapterFactory = require("../../base/adapter.js").NodeAdapterFactory;
 var Asset = require("./asset.js");
 var Misc = require("./misc.js");
@@ -10862,7 +10942,7 @@ var Xflow = Xflow || {};
 window.XML3D = XML3D;
 window.Xflow = Xflow;
 
-XML3D.version = '4.9.3';
+XML3D.version = '4.9.4';
 /** @const */
 XML3D.xml3dNS = 'http://www.xml3d.org/2009/xml3d';
 /** @const */
@@ -11210,7 +11290,7 @@ function mapFunctionOnXML3DElements(elementList, fun) {
             // These elements are leaf nodes (eg. TEXT) so we can ignore them
             return;
         }
-        if (element.tagName === "xml3d") {
+        if (element.tagName.toLowerCase() === "xml3d") {
             fun(element);
             // An XML3D element can't have further XML3D elements as children
             return;
@@ -11232,8 +11312,12 @@ function clearObserver(){
     }
 }
 
+if (document.readyState === "complete" || document.readyState === "interactive") {
+    onLoad();
+} else {
+    document.addEventListener('DOMContentLoaded', onLoad, false);
+}
 
-document.addEventListener('DOMContentLoaded', onLoad, false);
 window.addEventListener('unload', onUnload, false);
 window.addEventListener('reload', onUnload, false);
 
@@ -14309,7 +14393,9 @@ XML3D.createClass(ModelRenderAdapter, TransformableAdapter, {
         if (index != -1) {
             this.updatePostTransform(this.postTransformRenderGroups[index], request);
         }
-    }, updatePostTransform: function (renderNode, xflowRequest) {
+    },
+
+    updatePostTransform: function (renderNode, xflowRequest) {
         var dataResult = xflowRequest.getResult();
         var transformData = (dataResult.getOutputData("transform") && dataResult.getOutputData("transform").getValue());
         if (!transformData) {
@@ -14318,7 +14404,9 @@ XML3D.createClass(ModelRenderAdapter, TransformableAdapter, {
             return;
         }
         renderNode.setLocalMatrix(transformData);
-    }, dispose: function () {
+    },
+
+    dispose: function () {
         this.asset.removeChangeListener(this);
         this.clearModelRenderNodes();
         this.getRenderNode().remove();
@@ -15297,6 +15385,7 @@ var TouchEventHandler = function (defaultTarget, canvasHandler) {
 
 
 var EVENTS = ["touchstart", "touchmove", "touchend", "touchcancel"];
+var ua = /iPhone|iP[oa]d/.test(navigator.userAgent) ? 'iOS' : /Android/.test(navigator.userAgent) ? 'Android' : 'PC';
 
 TouchEventHandler.prototype = {
 
@@ -15343,7 +15432,7 @@ TouchEventHandler.prototype = {
         }
 
         if (touchEvent && touchEvent.initTouchEvent) {
-            if (touchEvent.initTouchEvent.length == 0) { //chrome
+            if (touchEvent.initTouchEvent.length == 0 && ua !== "iOS") { //chrome
                 touchEvent.initTouchEvent(data.touches, data.targetTouches, data.changedTouches, data.type, data.view, data.screenX, data.screenY, data.clientX, data.clientY);
             } else if (touchEvent.initTouchEvent.length == 12) { //firefox
                 touchEvent.initTouchEvent(data.type, data.bubbles, data.cancelable, data.view, data.detail, data.ctrlKey, data.altKey, data.shiftKey, data.metaKey, data.touches, data.targetTouches, data.changedTouches);
@@ -16977,6 +17066,14 @@ XML3D.createClass(RenderObject, RenderNode, {
         if (this.drawable) {
             var composer = this.scene.shaderFactory.createComposerFromMaterialConfiguration(this._actualMaterial);
             this.drawable.setShaderComposer(composer);
+        }
+    },
+
+    remove: function() {
+        this.parent.removeChild(this);
+        this.scene.freePageEntry({page: this.page, offset: this.offset, size: this.entrySize});
+        if (this.drawable) {
+            this.drawable.destroy();
         }
     }
 
@@ -24562,6 +24659,13 @@ XML3D.createClass(XflowMesh, DrawableClosure, {
 
     getProgram: function () {
         return this.shaderClosure;
+    },
+
+    destroy: function() {
+        this.mesh && this.mesh.clear();
+        this.objectShaderRequest && this.objectShaderRequest.clear();
+        this.typeRequest && this.typeRequest.clear();
+        this.setShaderComposer(null);
     }
 
 });
@@ -29787,13 +29891,23 @@ DataNode.prototype.insertBefore = function(child, beforeNode){
 };
 
 /**
- * remove all children of the DataNode
+ * clear all references and remove children
  */
-DataNode.prototype.clearChildren = function(){
+DataNode.prototype.clear = function(){
     for(var i =0; i < this._children.length; ++i){
         removeParent(this, this._children[i]);
     }
     this._children = [];
+    this._dataflowNode && this._dataflowNode.removeParent(this);
+    this._dataflowNode = null;
+    clearSubstitutionNodes(this);
+    updateProgressLevel(this);
+    this.notify( C.RESULT_STATE.CHANGED_STRUCTURE);
+    Base._flushResultCallbacks();
+};
+
+DataNode.prototype.removeParent = function(parent) {
+    Array.erase(this._parents, parent);
     updateProgressLevel(this);
     this.notify( C.RESULT_STATE.CHANGED_STRUCTURE);
     Base._flushResultCallbacks();
@@ -30102,11 +30216,22 @@ DataNode.prototype._removeSubstitutionNode = function(substitutionNode){
  * @param {DataNode} dataNode
  */
 function clearSubstitutionNodes(dataNode){
-    for(var name in dataNode._substitutionNodes){
+    if (!dataNode._substitutionNodes) {
+        return;
+    }
+    for(var name in dataNode._substitutionNodes) {
         dataNode._substitutionNodes[name].clear();
     }
     dataNode._substitutionNodes = {};
+    for (var i in dataNode._children) {
+        clearSubstitutionNodes(dataNode._children[i]);
+    }
 }
+//----------------------------------------------------------------------------------------------------------------------
+// Helpers
+//----------------------------------------------------------------------------------------------------------------------
+
+
 
 /**
  * Skips nodes, if it does not contribute to the result (optimization)
@@ -30170,11 +30295,6 @@ function updateProgressLevel(node){
             updateProgressLevel(node._parents[i]);
     }
 }
-
-//----------------------------------------------------------------------------------------------------------------------
-// Helpers
-//----------------------------------------------------------------------------------------------------------------------
-
 
 /**
  * @private
@@ -30452,7 +30572,7 @@ function clearVsConnectNode(connectNode){
     if(!c_vsConnectNodeCount[connectNode.id]){
         var key = c_vsConnectNodeKey[connectNode.id];
         c_vsConnectNodeCache[key] = null;
-        connectNode.clearChildren();
+        connectNode.clear();
     }
 }
 
@@ -33958,6 +34078,9 @@ ChannelNode.prototype.setStructureOutOfSync = function()
         for(var key in this.requestNodes){
             this.requestNodes[key].setStructureOutOfSync();
         }
+        if(this.dataflowChannelNode) {
+            this.dataflowChannelNode.setStructureOutOfSync();
+        }
     }
 };
 
@@ -35760,6 +35883,9 @@ ProcessNode.prototype.notifyOutputChanged = function(state){
 ProcessNode.prototype.clear = function(){
     for(var name in this.inputChannels){
         this.inputChannels[name] && this.inputChannels[name].removeListener(this);
+    }
+    for (var i = 0; i < this.children.length; i++) {
+        this.children[i].clear();
     }
 };
 
