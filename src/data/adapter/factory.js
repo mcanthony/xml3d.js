@@ -58,7 +58,9 @@ var reg = {
     'asset': Asset.AssetAdapter,
     'assetdata': Asset.AssetDataAdapter,
     'assetmesh': Asset.AssetMeshAdapter,
-    'model': Asset.AssetAdapter
+    'model': Asset.AssetAdapter,
+
+    'x-data': DataAdapter
 };
 
 /**

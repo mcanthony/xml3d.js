@@ -368,14 +368,28 @@ var mixedContent = function(handler) {
     handler.resetValue = function(storage) { storage.value = null; };
 };
 
-var getContent = function(elem) {
+var getContentFromChildren = function(children) {
     var str = "";
-    var k = elem.firstChild;
-    while (k) {
+    for (var i = 0; i < children.length; i++) {
+        var k = children[i];
+        if (k instanceof HTMLContentElement) {
+            str += getContentFromChildren(k.getDistributedNodes());
+            continue;
+        }
         str += k.nodeType == 3 ? k.textContent : " ";
-        k = k.nextSibling;
     }
     return str;
+}
+
+var getContent = function(elem) {
+    return getContentFromChildren(elem.childNodes);
+    //var str = "";
+    //var k = elem.firstChild;
+    //while (k) {
+    //    str += k.nodeType == 3 ? k.textContent : " ";
+    //    k = k.nextSibling;
+    //}
+    //return str;
 };
 
 handlers.FloatArrayValueHandler = function(id) {
@@ -421,6 +435,8 @@ handlers.StringValueHandler = function(id) {
     mixedContent(this);
 };
 handlers.StringValueHandler.prototype.parse = function(elem) {
+    if (elem.localName == 'string')
+        return getContent(elem);
     return elem.textContent;
 };
 

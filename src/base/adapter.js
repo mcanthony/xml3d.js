@@ -154,12 +154,34 @@ NodeAdapter.prototype.notifyOppositeAdapters = function(type) {
  */
 NodeAdapter.prototype.traverse = function(callback) {
     callback(this);
-    var child = this.node.firstElementChild;
-    while (child) {
+	var children = this.children(this.node);
+    for (var i = 0; i < children.length; i++) {
+		var child = children[i];
         var adapter = this.factory.getAdapter(child);
         adapter && adapter.traverse(callback);
-        child = child.nextElementSibling;
     }
+};
+
+/**
+ * The (relevant) children to a DOMNode
+ * @param {Object} node - DOM node of this Adapter
+ */
+NodeAdapter.prototype.children = function (node) {
+	if (node.shadowRoot)
+		node = node.shadowRoot;
+	var children = [];
+	var child = node.firstElementChild;
+	while (child) {
+		if (child instanceof HTMLContentElement) {
+            var nodes = child.getDistributedNodes();
+            for (var i = 0; i < nodes.length; i++)
+                children.push(nodes[i]);
+		} else {
+			children.push(child);
+		}
+		child = child.nextElementSibling;
+	}
+	return children;
 };
 
 

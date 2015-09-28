@@ -123,6 +123,11 @@ classInfo['data'] = {
     src: {a: handlers.StringAttributeHandler}
     };
 /**
+ * Properties and methods for <x-data>
+ **/
+classInfo['x-data'] = classInfo['data'];
+
+/**
  * Properties and methods for <dataflow>
  **/
 classInfo['dataflow'] = {
@@ -183,6 +188,10 @@ classInfo['group'] = {
     transform: {a: handlers.StringAttributeHandler},
     material: {a: handlers.StringAttributeHandler}
     };
+/**
+ * Properties and methods for <x-group>
+ **/
+classInfo['x-group'] = classInfo['group'];
 /**
  * Properties and methods for <mesh>
  **/
