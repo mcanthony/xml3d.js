@@ -20,7 +20,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-@version: 4.9.4
+@version: 4.9.5
 **/
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /**
@@ -6962,7 +6962,7 @@ module.exports = {
     AssetResult: AssetResult
 };
 
-},{"../xflow/base.js":148,"../xflow/interface/graph.js":151,"../xflow/utils/utils.js":200}],20:[function(require,module,exports){
+},{"../xflow/base.js":149,"../xflow/interface/graph.js":152,"../xflow/utils/utils.js":201}],20:[function(require,module,exports){
 var registerFactory = require("./resourcemanager.js").registerFactory;
 var Resource = require("./resourcemanager.js").Resource;
 var Events = require("../interface/notification.js");
@@ -8246,7 +8246,7 @@ module.exports = {
     Resource: Resource
 };
 
-},{"../utils/options.js":145,"../utils/uri.js":146,"./adapterhandle.js":21}],24:[function(require,module,exports){
+},{"../utils/options.js":146,"../utils/uri.js":147,"./adapterhandle.js":21}],24:[function(require,module,exports){
 
     /**
      * @author mrdoob / http://mrdoob.com/
@@ -9444,7 +9444,7 @@ module.exports = {
     AssetAdapter: AssetAdapter, AssetMeshAdapter: AssetMeshAdapter, AssetDataAdapter: AssetDataAdapter
 };
 
-},{"../../asset/asset.js":19,"../../base/adapter.js":20,"../../base/adapterhandle.js":21,"../../base/resourcemanager.js":23,"../../interface/notification.js":49,"../../utils/misc.js":144,"../../xflow/base.js":148,"../../xflow/interface/graph.js":151,"../transform-fetcher.js":41,"./data.js":31}],29:[function(require,module,exports){
+},{"../../asset/asset.js":19,"../../base/adapter.js":20,"../../base/adapterhandle.js":21,"../../base/resourcemanager.js":23,"../../interface/notification.js":49,"../../utils/misc.js":145,"../../xflow/base.js":149,"../../xflow/interface/graph.js":152,"../transform-fetcher.js":41,"./data.js":31}],29:[function(require,module,exports){
 var ComputeRequest = require("../../xflow/interface/request.js").ComputeRequest;
 var setShaderConstant = require("../../xflow/processing/vs-connect.js").setShaderConstant;
 var registerErrorCallback = require("../../xflow/base.js").registerErrorCallback;
@@ -9520,7 +9520,7 @@ registerErrorCallback(function(message, xflowNode){
 
 module.exports = BaseDataAdapter;
 
-},{"../../base/adapter.js":20,"../../utils/uri.js":146,"../../xflow/base.js":148,"../../xflow/interface/constants.js":149,"../../xflow/interface/request.js":152,"../../xflow/processing/vs-connect.js":199}],30:[function(require,module,exports){
+},{"../../base/adapter.js":20,"../../utils/uri.js":147,"../../xflow/base.js":149,"../../xflow/interface/constants.js":150,"../../xflow/interface/request.js":153,"../../xflow/processing/vs-connect.js":200}],30:[function(require,module,exports){
 var Events = require("../../interface/notification.js");
 var NodeAdapter = require("../../base/adapter.js").NodeAdapter;
 
@@ -9814,7 +9814,7 @@ module.exports = DataAdapter;
 
 
 
-},{"../../base/adapterhandle.js":21,"../../interface/notification.js":49,"../../utils/misc.js":144,"../../xflow/base.js":148,"../../xflow/interface/constants.js":149,"../../xflow/interface/graph.js":151,"./base.js":29}],32:[function(require,module,exports){
+},{"../../base/adapterhandle.js":21,"../../interface/notification.js":49,"../../utils/misc.js":145,"../../xflow/base.js":149,"../../xflow/interface/constants.js":150,"../../xflow/interface/graph.js":152,"./base.js":29}],32:[function(require,module,exports){
 var BaseDataAdapter = require("./base.js");
 var DataNode = require("../../xflow/interface/graph.js").DataNode;
 var XC = require("../../xflow/interface/constants.js");
@@ -10022,7 +10022,7 @@ function updateDataflowXflowNode(adapter, node) {
 
 module.exports = DataflowDataAdapter;
 
-},{"../../base/adapterhandle.js":21,"../../interface/notification.js":49,"../../xflow/base.js":148,"../../xflow/interface/constants.js":149,"../../xflow/interface/graph.js":151,"./base.js":29}],33:[function(require,module,exports){
+},{"../../base/adapterhandle.js":21,"../../interface/notification.js":49,"../../xflow/base.js":149,"../../xflow/interface/constants.js":150,"../../xflow/interface/graph.js":152,"./base.js":29}],33:[function(require,module,exports){
 var NodeAdapterFactory = require("../../base/adapter.js").NodeAdapterFactory;
 var Asset = require("./asset.js");
 var Misc = require("./misc.js");
@@ -10312,7 +10312,7 @@ JSONFactory.prototype.createAdapter = function(xflowNode) {
 
 xml3dJSonFormatHandler.registerFactoryClass(JSONFactory);
 
-},{"../../../base/adapter.js":20,"../../../base/formathandler.js":22,"../../../base/resourcemanager.js":23,"../../../xflow/interface/constants.js":149,"../../../xflow/interface/data.js":150,"../../../xflow/interface/graph.js":151}],36:[function(require,module,exports){
+},{"../../../base/adapter.js":20,"../../../base/formathandler.js":22,"../../../base/resourcemanager.js":23,"../../../xflow/interface/constants.js":150,"../../../xflow/interface/data.js":151,"../../../xflow/interface/graph.js":152}],36:[function(require,module,exports){
 var DataAdapter = require("./data.js");
 var Events = require("../../interface/notification.js");
 var URI = require("../../utils/uri.js").URI;
@@ -10517,7 +10517,7 @@ var createClass = XML3D.createClass;
     };
 
 
-},{"../../base/adapter.js":20,"../../base/resourcemanager.js":23,"../../interface/notification.js":49,"../../utils/misc.js":144,"../../utils/uri.js":146,"./data.js":31}],37:[function(require,module,exports){
+},{"../../base/adapter.js":20,"../../base/resourcemanager.js":23,"../../interface/notification.js":49,"../../utils/misc.js":145,"../../utils/uri.js":147,"./data.js":31}],37:[function(require,module,exports){
 var Events = require("../../interface/notification.js");
 var createClass = XML3D.createClass;
 var NodeAdapter = require("../../base/adapter.js").NodeAdapter;
@@ -10566,27 +10566,28 @@ var InputNode = require("../../xflow/interface/graph.js").InputNode;
 var XC = require("../../xflow/interface/constants.js");
 var Events = require("../../interface/notification.js");
 var NodeAdapter = require("../../base/adapter.js").NodeAdapter;
+var GL = require("../../renderer/webgl/constants.js");
 
 var clampToGL = function (modeStr) {
     if (modeStr == "clamp")
-        return WebGLRenderingContext.CLAMP_TO_EDGE;
+        return GL.CLAMP_TO_EDGE;
     if (modeStr == "repeat")
-        return WebGLRenderingContext.REPEAT;
+        return GL.REPEAT;
 };
 
 var filterToGL = function (modeStr) {
     if (modeStr == "nearest")
-        return WebGLRenderingContext.NEAREST;
+        return GL.NEAREST;
     if (modeStr == "linear")
-        return WebGLRenderingContext.LINEAR;
+        return GL.LINEAR;
     if (modeStr == "nearest-mipmap-nearest")
-        return WebGLRenderingContext.NEAREST_MIPMAP_NEAREST;
+        return GL.NEAREST_MIPMAP_NEAREST;
     if (modeStr == "linear-mipmap-nearest")
-        return WebGLRenderingContext.LINEAR_MIPMAP_NEAREST;
+        return GL.LINEAR_MIPMAP_NEAREST;
     if (modeStr == "nearest-mipmap-linear")
-        return WebGLRenderingContext.NEAREST_MIPMAP_LINEAR;
+        return GL.NEAREST_MIPMAP_LINEAR;
     if (modeStr == "linear-mipmap-linear")
-        return WebGLRenderingContext.LINEAR_MIPMAP_LINEAR;
+        return GL.LINEAR_MIPMAP_LINEAR;
 };
 
 var TextureDataAdapter = function (factory, node) {
@@ -10618,7 +10619,7 @@ TextureDataAdapter.prototype.createTextureEntry = function () {
 };
 
 TextureDataAdapter.prototype.shouldGenerateMipMaps = function (minFilter, magFilter) {
-    return (minFilter != WebGLRenderingContext.NEAREST && minFilter != WebGLRenderingContext.LINEAR) || (magFilter != WebGLRenderingContext.NEAREST && magFilter != WebGLRenderingContext.LINEAR);
+    return (minFilter != GL.NEAREST && minFilter != GL.LINEAR) || (magFilter != GL.NEAREST && magFilter != GL.LINEAR);
 };
 
 TextureDataAdapter.prototype.createXflowNode = function () {
@@ -10673,7 +10674,7 @@ TextureDataAdapter.prototype.toString = function () {
 // Export
 module.exports = TextureDataAdapter;
 
-},{"../../base/adapter.js":20,"../../interface/notification.js":49,"../../xflow/interface/constants.js":149,"../../xflow/interface/data.js":150,"../../xflow/interface/graph.js":151}],39:[function(require,module,exports){
+},{"../../base/adapter.js":20,"../../interface/notification.js":49,"../../renderer/webgl/constants.js":94,"../../xflow/interface/constants.js":150,"../../xflow/interface/data.js":151,"../../xflow/interface/graph.js":152}],39:[function(require,module,exports){
 var Events = require("../../interface/notification.js");
 var NodeAdapter = require("../../base/adapter.js").NodeAdapter;
 
@@ -10859,7 +10860,7 @@ ValueDataAdapter.prototype.checkForImproperNesting = function() {
 // Export
 module.exports = ValueDataAdapter;
 
-},{"../../base/adapter.js":20,"../../interface/notification.js":49,"../../xflow/interface/constants.js":149,"../../xflow/interface/data.js":150,"../../xflow/interface/graph.js":151}],41:[function(require,module,exports){
+},{"../../base/adapter.js":20,"../../interface/notification.js":49,"../../xflow/interface/constants.js":150,"../../xflow/interface/data.js":151,"../../xflow/interface/graph.js":152}],41:[function(require,module,exports){
 var ComputeRequest = require("../xflow/interface/request.js").ComputeRequest;
 var Events = require("../interface/notification.js");
 var CSS = require("../utils/css.js");
@@ -10932,7 +10933,7 @@ DOMTransformFetcher.prototype._onChange = function (evt) {
 
 module.exports = DOMTransformFetcher;
 
-},{"../interface/notification.js":49,"../utils/css.js":141,"../xflow/interface/request.js":152}],42:[function(require,module,exports){
+},{"../interface/notification.js":49,"../utils/css.js":142,"../xflow/interface/request.js":153}],42:[function(require,module,exports){
 if (window.XML3D !== undefined) {
     throw new Error("Tried to define the XML3D namespace a second time. Please ensure xml3d.js is only loaded once!");
 }
@@ -10942,7 +10943,7 @@ var Xflow = Xflow || {};
 window.XML3D = XML3D;
 window.Xflow = Xflow;
 
-XML3D.version = '4.9.4';
+XML3D.version = '4.9.5';
 /** @const */
 XML3D.xml3dNS = 'http://www.xml3d.org/2009/xml3d';
 /** @const */
@@ -11052,7 +11053,6 @@ XML3D.webgl.ForwardRenderPass = require("./renderer/webgl/render-passes/forward.
 XML3D.webgl.BaseRenderTree = require("./renderer/webgl/render-trees/base.js");
 XML3D.extend(XML3D.webgl, require("./renderer/webgl/base/rendertarget.js"));
 
-
 require("./xflow/operator/default");
 
 module.exports = {
@@ -11060,7 +11060,7 @@ module.exports = {
     Xflow : Xflow
 };
 
-},{"./base/resourcemanager.js":23,"./math/bbox.js":51,"./math/math.js":52,"./renderer/webgl/base/fullscreenquad.js":87,"./renderer/webgl/base/rendertarget.js":90,"./renderer/webgl/materials/urn/shaders.js":107,"./renderer/webgl/render-passes/base.js":112,"./renderer/webgl/render-passes/forward.js":114,"./renderer/webgl/render-trees/base.js":123,"./types/box.js":134,"./types/data-observer.js":135,"./types/matrix.js":136,"./types/ray.js":137,"./types/rotation.js":138,"./types/vec3.js":139,"./utils/debug.js":143,"./utils/misc.js":144,"./utils/options.js":145,"./utils/webcl.js":147,"./xflow/interface/constants.js":149,"./xflow/interface/data.js":150,"./xflow/interface/graph.js":151,"./xflow/interface/request.js":152,"./xflow/operator/default":169,"./xflow/operator/operator.js":189,"gl-matrix":1}],43:[function(require,module,exports){
+},{"./base/resourcemanager.js":23,"./math/bbox.js":51,"./math/math.js":52,"./renderer/webgl/base/fullscreenquad.js":87,"./renderer/webgl/base/rendertarget.js":90,"./renderer/webgl/materials/urn/shaders.js":108,"./renderer/webgl/render-passes/base.js":113,"./renderer/webgl/render-passes/forward.js":115,"./renderer/webgl/render-trees/base.js":124,"./types/box.js":135,"./types/data-observer.js":136,"./types/matrix.js":137,"./types/ray.js":138,"./types/rotation.js":139,"./types/vec3.js":140,"./utils/debug.js":144,"./utils/misc.js":145,"./utils/options.js":146,"./utils/webcl.js":148,"./xflow/interface/constants.js":150,"./xflow/interface/data.js":151,"./xflow/interface/graph.js":152,"./xflow/interface/request.js":153,"./xflow/operator/default":170,"./xflow/operator/operator.js":190,"gl-matrix":1}],43:[function(require,module,exports){
 var XML3D = require("./global.js").XML3D;
 var Config = require("./interface/elements.js").config;
 var sendAdapterEvent = require("./utils/misc.js").sendAdapterEvent;
@@ -11324,7 +11324,7 @@ window.addEventListener('reload', onUnload, false);
 module.exports = XML3D;
 
 
-},{"./global.js":42,"./interface/dom.js":46,"./interface/elements.js":47,"./renderer/renderer/configure.js":66,"./renderer/webgl/base/utils.js":92,"./utils/css.js":141,"./utils/debug.js":143,"./utils/misc.js":144,"./utils/options.js":145}],44:[function(require,module,exports){
+},{"./global.js":42,"./interface/dom.js":46,"./interface/elements.js":47,"./renderer/renderer/configure.js":66,"./renderer/webgl/base/utils.js":92,"./utils/css.js":142,"./utils/debug.js":144,"./utils/misc.js":145,"./utils/options.js":146}],44:[function(require,module,exports){
 require("../utils/array.js");
 var Resource = require("../base/resourcemanager.js").Resource;
 
@@ -11782,7 +11782,7 @@ handlers.CanvasClassHandler = function(id) {
 
 module.exports = handlers;
 
-},{"../base/resourcemanager.js":23,"../utils/array.js":140}],45:[function(require,module,exports){
+},{"../base/resourcemanager.js":23,"../utils/array.js":141}],45:[function(require,module,exports){
 var methods = require("./methods.js");
 var handlers = require("./attributes.js");
 var properties = require("./properties.js");
@@ -12836,7 +12836,7 @@ module.exports = {
     config : config
 };
 
-},{"../base/resourcemanager.js":23,"../utils/array.js":140,"./configuration.js":45,"./notification.js":49}],48:[function(require,module,exports){
+},{"../base/resourcemanager.js":23,"../utils/array.js":141,"./configuration.js":45,"./notification.js":49}],48:[function(require,module,exports){
 var Resource = require("../base/resourcemanager.js").Resource;
 var sendAdapterEvent = require("../utils/misc.js").sendAdapterEvent;
 var callAdapterFunc = require("../utils/misc.js").callAdapterFunc;
@@ -13145,7 +13145,7 @@ methods.XML3DDataSourceTypeSetScriptValue = function(data){
 };
 
 module.exports = methods;
-},{"../base/resourcemanager.js":23,"../utils/misc.js":144}],49:[function(require,module,exports){
+},{"../base/resourcemanager.js":23,"../utils/misc.js":145}],49:[function(require,module,exports){
 
 /**
  * Types of change events
@@ -14515,7 +14515,7 @@ XML3D.extend(ModelRenderAdapter.prototype, {
 module.exports = ModelRenderAdapter;
 
 
-},{"../../../base/adapterhandle.js":21,"../../../base/resourcemanager.js":23,"../../../interface/notification.js":49,"../../../xflow/interface/request.js":152,"./transformable.js":62}],61:[function(require,module,exports){
+},{"../../../base/adapterhandle.js":21,"../../../base/resourcemanager.js":23,"../../../interface/notification.js":49,"../../../xflow/interface/request.js":153,"./transformable.js":62}],61:[function(require,module,exports){
 var RenderAdapter = require("./base.js");
 var Events = require("../../../interface/notification.js");
 var URI = require("../../../utils/uri.js").URI;
@@ -14608,7 +14608,7 @@ XML3D.extend(ShaderRenderAdapter.prototype, {
 module.exports = ShaderRenderAdapter;
 
 
-},{"../../../base/adapterhandle.js":21,"../../../base/resourcemanager.js":23,"../../../interface/notification.js":49,"../../../utils/uri.js":146,"./base.js":53}],62:[function(require,module,exports){
+},{"../../../base/adapterhandle.js":21,"../../../base/resourcemanager.js":23,"../../../interface/notification.js":49,"../../../utils/uri.js":147,"./base.js":53}],62:[function(require,module,exports){
 var RenderAdapter = require("./base.js");
 var DOMTransformFetcher = require("../../../data/transform-fetcher.js");
 var Events = require("../../../interface/notification.js");
@@ -14976,7 +14976,7 @@ module.exports = XML3DRenderAdapter;
 
 
 
-},{"../../../base/resourcemanager.js":23,"../../../interface/notification.js":49,"../../../utils/misc.js":144,"../utils.js":85,"./base.js":53}],65:[function(require,module,exports){
+},{"../../../base/resourcemanager.js":23,"../../../interface/notification.js":49,"../../../utils/misc.js":145,"../utils.js":85,"./base.js":53}],65:[function(require,module,exports){
 var MouseEvents = require("./events/mouse.js");
 var TouchEvents = require("./events/touch.js");
 
@@ -15371,7 +15371,7 @@ module.exports = {
     EVENTS: EVENTS, MouseEventHandler: MouseEventHandler
 };
 
-},{"../../../utils/options.js":145}],68:[function(require,module,exports){
+},{"../../../utils/options.js":146}],68:[function(require,module,exports){
 /**
  *
  * @param {Element} defaultTarget
@@ -15992,7 +15992,7 @@ module.exports = {
 
 };
 
-},{"../../../xflow/interface/constants.js":149,"../../../xflow/interface/data.js":150,"../../../xflow/interface/graph.js":151,"../../../xflow/interface/request.js":152,"../tools/frustum.js":83}],71:[function(require,module,exports){
+},{"../../../xflow/interface/constants.js":150,"../../../xflow/interface/data.js":151,"../../../xflow/interface/graph.js":152,"../../../xflow/interface/request.js":153,"../tools/frustum.js":83}],71:[function(require,module,exports){
 var GLRenderer = require("../webgl/renderer.js");
 var GLCanvasHandler = require("../webgl/canvas-handler.js");
 
@@ -16015,7 +16015,7 @@ module.exports = new RendererFactory();
 
 
 
-},{"../webgl/canvas-handler.js":93,"../webgl/renderer.js":125}],72:[function(require,module,exports){
+},{"../webgl/canvas-handler.js":93,"../webgl/renderer.js":126}],72:[function(require,module,exports){
 module.exports = {
     NODE_TYPE: {
         GROUP: "group", OBJECT: "object", LIGHT: "light", VIEW: "view"
@@ -17084,7 +17084,7 @@ XML3D.createClass(RenderObject, RenderNode, {
 module.exports = RenderObject;
 
 
-},{"../../../xflow/interface/request.js":152,"../../webgl/system/system-notifier.js":131,"./constants.js":72,"./drawableclosure.js":73,"./rendernode.js":78,"./scene.js":81}],80:[function(require,module,exports){
+},{"../../../xflow/interface/request.js":153,"../../webgl/system/system-notifier.js":132,"./constants.js":72,"./drawableclosure.js":73,"./rendernode.js":78,"./scene.js":81}],80:[function(require,module,exports){
 var RenderNode = require("./rendernode.js");
 var Constants = require("./constants.js");
 var Frustum = require("../tools/frustum.js").Frustum;
@@ -17463,7 +17463,7 @@ XML3D.extend(Scene.prototype, {
 
 module.exports = Scene;
 
-},{"../../../utils/uri.js":146,"../../../xflow/interface/constants.js":149,"../../../xflow/interface/data.js":150,"../../../xflow/interface/graph.js":151,"../lights/light-manager.js":69,"./constants.js":72,"./material-configuration.js":74,"./pager.js":75,"./rendergroup.js":76,"./renderlight.js":77,"./renderobject.js":79,"./renderview.js":80}],82:[function(require,module,exports){
+},{"../../../utils/uri.js":147,"../../../xflow/interface/constants.js":150,"../../../xflow/interface/data.js":151,"../../../xflow/interface/graph.js":152,"../lights/light-manager.js":69,"./constants.js":72,"./material-configuration.js":74,"./pager.js":75,"./rendergroup.js":76,"./renderlight.js":77,"./renderobject.js":79,"./renderview.js":80}],82:[function(require,module,exports){
 var DataChangeNotifier = require("../../../xflow/interface/data.js").DataChangeNotifier;
 
 /**
@@ -17490,7 +17490,7 @@ DataChangeListener.prototype.dataEntryChanged = function (entry, notification) {
 
 module.exports = DataChangeListener;
 
-},{"../../../xflow/interface/data.js":150}],83:[function(require,module,exports){
+},{"../../../xflow/interface/data.js":151}],83:[function(require,module,exports){
 var vec3 = XML3D.math.vec3;
 var tmp1 = vec3.create();
 var tmp2 = vec3.create();
@@ -17884,6 +17884,7 @@ var GLCubeMap = require("./texture.js").GLCubeMap;
 var GLCanvasTarget = require("./rendertarget.js").GLCanvasTarget;
 var ProgramFactory = require("./../shader/programfactory.js");
 var XC = require("../../../xflow/interface/constants.js");
+var GL = require("../constants.js");
 
 var CONTEXT_OPTIONS = {
     alpha: true, premultipliedAlpha: false, antialias: true, stencil: true, preserveDrawingBuffer: true
@@ -17911,7 +17912,7 @@ var GLContext = function (canvas, id) {
     this.id = id;
     this.canvasTarget = new GLCanvasTarget(this, canvas.clientWidth, canvas.clientHeight);
     this.programFactory = new ProgramFactory(this);
-    this.textureManager = new TextureManager({ units: this.gl.getParameter(WebGLRenderingContext.MAX_COMBINED_TEXTURE_IMAGE_UNITS )});
+    this.textureManager = new TextureManager({ units: this.gl.getParameter(GL.MAX_COMBINED_TEXTURE_IMAGE_UNITS )});
     this.stats = {
         materials: 0, meshes: 0
     };
@@ -17990,7 +17991,7 @@ module.exports = GLContext;
 
 
 
-},{"../../../xflow/interface/constants.js":149,"./../shader/programfactory.js":129,"./rendertarget.js":90,"./texture.js":91,"texture-manager":16}],87:[function(require,module,exports){
+},{"../../../xflow/interface/constants.js":150,"../constants.js":94,"./../shader/programfactory.js":130,"./rendertarget.js":90,"./texture.js":91,"texture-manager":16}],87:[function(require,module,exports){
 var FullscreenQuad = function (context) {
     this.gl = context.gl;
     this.createGLAssets();
@@ -18023,8 +18024,7 @@ module.exports = FullscreenQuad;
 
 
 },{}],88:[function(require,module,exports){
-
-
+var GL = require("../constants.js");
 /**
  *
  * @param context
@@ -18042,7 +18042,7 @@ var GLMesh = function (context, type) {
     this.vertexCount = null;
     this.minAttributeCount = -1;
     this.context.getStatistics().meshes++;
-    this.multiDraw = (this.glType == WebGLRenderingContext.LINE_STRIP || this.glType == WebGLRenderingContext.TRIANGLE_STRIP);
+    this.multiDraw = (this.glType == GL.LINE_STRIP || this.glType == GL.TRIANGLE_STRIP);
 };
 
 XML3D.extend(GLMesh.prototype, {
@@ -18209,8 +18209,7 @@ XML3D.extend(GLMesh.prototype, {
  * @param {string} typeName
  */
 var getGLTypeFromString = function (typeName) {
-    var GL = window.WebGLRenderingContext;
-    if (typeName && typeName.toLoweGLase)
+    if (typeName && typeName.toLowerCase)
         typeName = typeName.toLowerCase();
     switch (typeName) {
         case "triangles":
@@ -18230,10 +18229,11 @@ var getGLTypeFromString = function (typeName) {
 
 module.exports = GLMesh;
 
-},{}],89:[function(require,module,exports){
+},{"../constants.js":94}],89:[function(require,module,exports){
 
 var utils = require("./utils.js");
 var SystemNotifier = require("../system/system-notifier.js");
+var GL = require("../constants.js");
 
 //noinspection JSValidateJSDoc
 /**
@@ -18247,10 +18247,10 @@ var createWebGLShaderFromSource = function (gl, type, shaderSource) {
     gl.shaderSource(shader, shaderSource);
     gl.compileShader(shader);
 
-    if (gl.getShaderParameter(shader, WebGLRenderingContext.COMPILE_STATUS) == 0) {
+    if (gl.getShaderParameter(shader, GL.COMPILE_STATUS) == 0) {
         var message = gl.getShaderInfoLog(shader);
         var errorString = "";
-        if (type == WebGLRenderingContext.VERTEX_SHADER)
+        if (type == GL.VERTEX_SHADER)
             errorString = "Vertex shader failed to compile: \n"; else
             errorString = "Fragment shader failed to compile: \n";
 
@@ -18260,7 +18260,7 @@ var createWebGLShaderFromSource = function (gl, type, shaderSource) {
         gl.getError();
         SystemNotifier.sendEvent('glsl', {
                 glslType: "compile_error",
-                shaderType: type == WebGLRenderingContext.VERTEX_SHADER ? "vertex" : "fragment",
+                shaderType: type == GL.VERTEX_SHADER ? "vertex" : "fragment",
                 code: shaderSource,
                 message: message
             });
@@ -18282,12 +18282,12 @@ var createProgramFromSources = function (gl, vertexSources, fragmentSources) {
     var shaders = [];
     for (s in vertexSources) {
         src = vertexSources[s];
-        shd = createWebGLShaderFromSource(gl, WebGLRenderingContext.VERTEX_SHADER, src);
+        shd = createWebGLShaderFromSource(gl, GL.VERTEX_SHADER, src);
         shaders.push(shd);
     }
     for (s in fragmentSources) {
         src = fragmentSources[s];
-        shd = createWebGLShaderFromSource(gl, WebGLRenderingContext.FRAGMENT_SHADER, src);
+        shd = createWebGLShaderFromSource(gl, GL.FRAGMENT_SHADER, src);
         shaders.push(shd);
     }
     return createProgramFromShaders(gl, shaders);
@@ -18306,7 +18306,7 @@ var createProgramFromShaders = function (gl, shaders) {
         gl.attachShader(program, shader);
     }
     gl.linkProgram(program);
-    if (gl.getProgramParameter(program, WebGLRenderingContext.LINK_STATUS) == 0) {
+    if (gl.getProgramParameter(program, GL.LINK_STATUS) == 0) {
         var message = gl.getProgramInfoLog(program);
         var errorString = "Shader linking failed: \n";
         errorString += message;
@@ -18523,7 +18523,7 @@ XML3D.extend(ProgramObject.prototype, {
 module.exports = ProgramObject;
 
 
-},{"../system/system-notifier.js":131,"./utils.js":92}],90:[function(require,module,exports){
+},{"../constants.js":94,"../system/system-notifier.js":132,"./utils.js":92}],90:[function(require,module,exports){
 /**
  * @interface
  */
@@ -19006,6 +19006,7 @@ var StateMachine = require("../../../contrib/state-machine.js");
 var SamplerConfig = require("../../../xflow/interface/data.js").SamplerConfig;
 var XC = require("../../../xflow/interface/constants.js");
 var uniqueObjectId = utils.getUniqueCounter();
+var GL = require("../constants.js");
 
 //noinspection JSValidateJSDoc
 /**
@@ -19037,7 +19038,7 @@ var GLTexture = function (context) {
     this.height = 0;
     this.handle = null;
 
-    this.textureType = context.gl.TEXTURE_2D;
+    this.textureType = GL.TEXTURE_2D;
 
     this.textureUnitCallback = this.lostTextureUnit.bind(this);
 };
@@ -19061,8 +19062,8 @@ var getOrCreateFallbackTexture = (function () {
             for (var i = 0; i < texels.length; i++) {
                 texels[i] = 128;
             }
-            c_fallbackTexture.createTex2DFromData(WebGLRenderingContext.RGB, size, size, WebGLRenderingContext.RGB, WebGLRenderingContext.UNSIGNED_BYTE, {
-                texels: texels, wrapS: WebGLRenderingContext.REPEAT, wrapT: WebGLRenderingContext.REPEAT, minFilter: WebGLRenderingContext.LINEAR, magFilter: WebGLRenderingContext.LINEAR
+            c_fallbackTexture.createTex2DFromData(GL.RGB, size, size, GL.RGB, GL.UNSIGNED_BYTE, {
+                texels: texels, wrapS: GL.REPEAT, wrapT: GL.REPEAT, minFilter: GL.LINEAR, magFilter: GL.LINEAR
             });
         }
         return c_fallbackTexture;
@@ -19167,7 +19168,7 @@ XML3D.extend(GLTexture.prototype, {
      * @returns {boolean}
      */
     needsScale: function (width, height) {
-        return (this.generateMipMap || this.wrapS != WebGLRenderingContext.CLAMP_TO_EDGE || this.wrapT != WebGLRenderingContext.CLAMP_TO_EDGE) && (!isPowerOfTwo(width) || !isPowerOfTwo(height))
+        return (this.generateMipMap || this.wrapS != GL.CLAMP_TO_EDGE || this.wrapT != GL.CLAMP_TO_EDGE) && (!isPowerOfTwo(width) || !isPowerOfTwo(height))
     },
 
 
@@ -19178,7 +19179,7 @@ XML3D.extend(GLTexture.prototype, {
         if (unit == -2) {
             XML3D.debug.logError("All available texture units are full.");
         } else {
-            gl.activeTexture(WebGLRenderingContext.TEXTURE0 + unit);
+            gl.activeTexture(GL.TEXTURE0 + unit);
             gl.bindTexture(this.textureType, this.handle);
         }
         return unit;
@@ -19310,10 +19311,9 @@ StateMachine.create({
  * @constructor
  */
 var GLCubeMap = function (context) {
-    GLTexture.call(this, context, context.gl.TEXTURE_CUBE_MAP);
-    var gl = context.gl;
-    this.textureType = context.gl.TEXTURE_CUBE_MAP;
-    this.glSides = [gl.TEXTURE_CUBE_MAP_POSITIVE_X, gl.TEXTURE_CUBE_MAP_NEGATIVE_X, gl.TEXTURE_CUBE_MAP_POSITIVE_Y, gl.TEXTURE_CUBE_MAP_NEGATIVE_Y, gl.TEXTURE_CUBE_MAP_POSITIVE_Z, gl.TEXTURE_CUBE_MAP_NEGATIVE_Z];
+    GLTexture.call(this, context, GL.TEXTURE_CUBE_MAP);
+    this.textureType = GL.TEXTURE_CUBE_MAP;
+    this.glSides = [GL.TEXTURE_CUBE_MAP_POSITIVE_X, GL.TEXTURE_CUBE_MAP_NEGATIVE_X, GL.TEXTURE_CUBE_MAP_POSITIVE_Y, GL.TEXTURE_CUBE_MAP_NEGATIVE_Y, GL.TEXTURE_CUBE_MAP_POSITIVE_Z, GL.TEXTURE_CUBE_MAP_NEGATIVE_Z];
 
 };
 XML3D.createClass(GLCubeMap, GLTexture, {
@@ -19384,7 +19384,7 @@ module.exports = {
 
 
 
-},{"../../../contrib/state-machine.js":27,"../../../xflow/interface/constants.js":149,"../../../xflow/interface/data.js":150,"./utils.js":92}],92:[function(require,module,exports){
+},{"../../../contrib/state-machine.js":27,"../../../xflow/interface/constants.js":150,"../../../xflow/interface/data.js":151,"../constants.js":94,"./utils.js":92}],92:[function(require,module,exports){
 require("../../../utils/array.js");
 
 module.exports = {
@@ -19513,7 +19513,7 @@ module.exports = {
 };
 
 
-},{"../../../utils/array.js":140}],93:[function(require,module,exports){
+},{"../../../utils/array.js":141}],93:[function(require,module,exports){
 var AbstractCanvasHandler = require("../renderer/canvas-handler.js");
 var Options = require("../../utils/options.js");
 var xml3dFormatHandler = require("../../base/formathandler.js").xml3dFormatHandler;
@@ -19696,7 +19696,11 @@ GLCanvasHandler.prototype.getMousePosition = function (evt) {
 module.exports =  GLCanvasHandler;
 
 
-},{"../../base/formathandler.js":22,"../../utils/options.js":145,"../renderer/canvas-handler.js":65}],94:[function(require,module,exports){
+},{"../../base/formathandler.js":22,"../../utils/options.js":146,"../renderer/canvas-handler.js":65}],94:[function(require,module,exports){
+
+// 01.10.2015: Workaround for Safari bug on iOS 9 (https://bugs.webkit.org/show_bug.cgi?id=148449)
+module.exports = WebGLRenderingContext.ONE ? WebGLRenderingContext : WebGLRenderingContext.prototype;
+},{}],95:[function(require,module,exports){
 var GLProgramObject = require("../base/program.js");
 var XflowUtils= require("../xflow/utils.js");
 
@@ -19826,7 +19830,7 @@ XML3D.createClass(AbstractShaderClosure, null, {
 module.exports = AbstractShaderClosure;
 
 
-},{"../base/program.js":89,"../xflow/utils.js":132}],95:[function(require,module,exports){
+},{"../base/program.js":89,"../xflow/utils.js":133}],96:[function(require,module,exports){
 var GLScene = require("../scene/glscene.js");
 var GLLights = require("../scene/gllights.js");
 var MaterialEvents = require("../materials/events.js");
@@ -20083,13 +20087,13 @@ module.exports = {
 }
 
 
-},{"../../../contrib/EventDispatcher.js":24,"../../../xflow/interface/constants.js":149,"../../../xflow/interface/request.js":152,"../materials/events.js":96,"../scene/gllights.js":127,"../scene/glscene.js":128}],96:[function(require,module,exports){
+},{"../../../contrib/EventDispatcher.js":24,"../../../xflow/interface/constants.js":150,"../../../xflow/interface/request.js":153,"../materials/events.js":97,"../scene/gllights.js":128,"../scene/glscene.js":129}],97:[function(require,module,exports){
 module.exports = {
     MATERIAL_STRUCTURE_CHANGED: "material_structure_changed",
     MATERIAL_INITIALIZED: "material_initialized"
 };
 
-},{}],97:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 var AbstractShaderClosure = require("./../abstractshaderclosure.js");
 var JSShaderComposer = require("./jsshadercomposer.js");
 var SystemNotifier = require("../../system/system-notifier.js");
@@ -20395,7 +20399,7 @@ function getTupleSize(desc) {
 module.exports = JSShaderClosure;
 
 
-},{"../../../../utils/options.js":145,"../../../../xflow/interface/constants.js":149,"../../system/system-notifier.js":131,"./../abstractshaderclosure.js":94,"./jsshadercomposer.js":98,"./jssystemconfiguration.js":99}],98:[function(require,module,exports){
+},{"../../../../utils/options.js":146,"../../../../xflow/interface/constants.js":150,"../../system/system-notifier.js":132,"./../abstractshaderclosure.js":95,"./jsshadercomposer.js":99,"./jssystemconfiguration.js":100}],99:[function(require,module,exports){
 var AbstractShaderComposer = require("./../abstractshadercomposer.js").AbstractShaderComposer;
 var JSShaderClosure = require("./jsshaderclosure.js");
 var VSConfig = require("../../../../xflow/processing/vs-connect.js").VSConfig;
@@ -20515,7 +20519,7 @@ module.exports = JSShaderComposer;
 
 
 
-},{"../../../../xflow/interface/constants.js":149,"../../../../xflow/interface/request.js":152,"../../../../xflow/processing/vs-connect.js":199,"./../abstractshadercomposer.js":95,"./jsshaderclosure.js":97}],99:[function(require,module,exports){
+},{"../../../../xflow/interface/constants.js":150,"../../../../xflow/interface/request.js":153,"../../../../xflow/processing/vs-connect.js":200,"./../abstractshadercomposer.js":96,"./jsshaderclosure.js":98}],100:[function(require,module,exports){
 var GLContext = require("../../base/context.js");
 var singleton = null;
 
@@ -20654,7 +20658,7 @@ module.exports = function (context) {
 
 
 
-},{"../../base/context.js":86}],100:[function(require,module,exports){
+},{"../../base/context.js":86}],101:[function(require,module,exports){
 var JSShaderComposer = require("./js/jsshadercomposer.js");
 var URNShaderComposer = require("./urn/urnshadercomposer.js");
 var DefaultComposer = require("./abstractshadercomposer.js").DefaultComposer;
@@ -20751,7 +20755,7 @@ module.exports = ShaderComposerFactory;
 
 
 
-},{"./abstractshadercomposer.js":95,"./js/jsshadercomposer.js":98,"./urn/urnshadercomposer.js":109}],101:[function(require,module,exports){
+},{"./abstractshadercomposer.js":96,"./js/jsshadercomposer.js":99,"./urn/urnshadercomposer.js":110}],102:[function(require,module,exports){
 var EVENT_TYPE = require("../../renderer/scene/constants.js").EVENT_TYPE;
 var Targets = require("../base/rendertarget");
 
@@ -20888,7 +20892,7 @@ function mergeShadowParameters(shadowMapInfos) {
 
 module.exports = ShadowMapService;
 
-},{"../../renderer/scene/constants.js":72,"../base/rendertarget":90,"../render-passes/light-pass":115,"../render-passes/pointlight-pass":119}],102:[function(require,module,exports){
+},{"../../renderer/scene/constants.js":72,"../base/rendertarget":90,"../render-passes/light-pass":116,"../render-passes/pointlight-pass":120}],103:[function(require,module,exports){
 XML3D.shaders.register("diffuse", {
 
     vertex : [
@@ -21066,7 +21070,7 @@ XML3D.shaders.register("diffuse", {
     }
 });
 
-},{}],103:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
 XML3D.shaders.register("matte", {
 
     vertex: [
@@ -21109,7 +21113,7 @@ XML3D.shaders.register("matte", {
 
 XML3D.shaders.register("flat", XML3D.shaders.getScript("matte"));
 
-},{}],104:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 XML3D.shaders.register("phong", {
 
     vertex : [
@@ -21445,7 +21449,7 @@ XML3D.shaders.register("phong", {
     }
 });
 
-},{}],105:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 XML3D.shaders.register("point", {
 
     vertex : [
@@ -21537,7 +21541,7 @@ XML3D.shaders.register("point", {
     }
 });
 
-},{}],106:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 var ShaderDescriptor = function () {
     this.uniforms = {};
     this.samplers = {};
@@ -21554,7 +21558,7 @@ ShaderDescriptor.prototype.hasTransparency = function () {
 
 module.exports = ShaderDescriptor;
 
-},{}],107:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 var c_globalScripts = {};
 
 module.exports = {
@@ -21569,7 +21573,7 @@ module.exports = {
     }
 };
 
-},{}],108:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 var AbstractShaderClosure = require("./../abstractshaderclosure.js");
 var SystemNotifier = require("../../system/system-notifier.js");
 
@@ -21638,7 +21642,7 @@ XML3D.extend(ShaderClosure.prototype, {
 module.exports = ShaderClosure;
 
 
-},{"../../system/system-notifier.js":131,"./../abstractshaderclosure.js":94}],109:[function(require,module,exports){
+},{"../../system/system-notifier.js":132,"./../abstractshaderclosure.js":95}],110:[function(require,module,exports){
 var AbstractShaderComposer = require("../abstractshadercomposer.js").AbstractShaderComposer;
 var URNShaderClosure= require("./urnshaderclosure.js");
 var ShaderDescriptor = require("./shader-descriptor.js");
@@ -21749,7 +21753,7 @@ module.exports = URNShaderComposer;
 
 
 
-},{"../../../../xflow/interface/request.js":152,"../../shader/shader-utils.js":130,"../abstractshadercomposer.js":95,"./diffuse.js":102,"./matte.js":103,"./phong.js":104,"./point.js":105,"./shader-descriptor.js":106,"./urnshaderclosure.js":108,"./utility.js":110}],110:[function(require,module,exports){
+},{"../../../../xflow/interface/request.js":153,"../../shader/shader-utils.js":131,"../abstractshadercomposer.js":96,"./diffuse.js":103,"./matte.js":104,"./phong.js":105,"./point.js":106,"./shader-descriptor.js":107,"./urnshaderclosure.js":109,"./utility.js":111}],111:[function(require,module,exports){
 XML3D.shaders.register("pickobjectid", {
     vertex : [
         "attribute vec3 position;",
@@ -22042,9 +22046,9 @@ XML3D.shaders.register("ssao", {
     }
 });
 
-},{}],111:[function(require,module,exports){
+},{}],112:[function(require,module,exports){
 // Note: This context should only be used to access GL constants
-var GL = window.WebGLRenderingContext;
+var GL = require("./constants.js");
 var ForwardRenderTree = require("./render-trees/forward.js");
 
 /**
@@ -22083,7 +22087,7 @@ XML3D.extend(GLRenderInterface.prototype, {
 module.exports = GLRenderInterface;
 
 
-},{"./render-trees/forward.js":124}],112:[function(require,module,exports){
+},{"./constants.js":94,"./render-trees/forward.js":125}],113:[function(require,module,exports){
 /**
  * @constructor
  */
@@ -22173,7 +22177,7 @@ XML3D.extend(BaseRenderPass.prototype, {
 module.exports = BaseRenderPass;
 
 
-},{}],113:[function(require,module,exports){
+},{}],114:[function(require,module,exports){
 var BaseRenderPass = require("./base.js");
 var FullscreenQuad = require("../base/fullscreenquad.js");
 
@@ -22230,7 +22234,7 @@ XML3D.extend(BoxBlurPass.prototype, {
 module.exports = BoxBlurPass;
 
 
-},{"../base/fullscreenquad.js":87,"./base.js":112}],114:[function(require,module,exports){
+},{"../base/fullscreenquad.js":87,"./base.js":113}],115:[function(require,module,exports){
 var SceneRenderPass = require("./scene-pass.js");
 var ObjectSorter = require("../../renderer/tools/objectsorter.js");
 
@@ -22312,7 +22316,7 @@ XML3D.extend(ForwardRenderPass.prototype, {
 module.exports = ForwardRenderPass;
 
 
-},{"../../renderer/tools/objectsorter.js":84,"./scene-pass.js":120}],115:[function(require,module,exports){
+},{"../../renderer/tools/objectsorter.js":84,"./scene-pass.js":121}],116:[function(require,module,exports){
 var SceneRenderPass = require("./scene-pass.js");
 var ObjectSorter = require("../../renderer/tools/objectsorter.js");
 
@@ -22383,7 +22387,7 @@ XML3D.createClass(LightPass, SceneRenderPass, {
 module.exports = LightPass;
 
 
-},{"../../renderer/tools/objectsorter.js":84,"./scene-pass.js":120}],116:[function(require,module,exports){
+},{"../../renderer/tools/objectsorter.js":84,"./scene-pass.js":121}],117:[function(require,module,exports){
 var BaseRenderPass = require("./base.js");
 
 var PickNormalRenderPass = function (renderInterface, output, opt) {
@@ -22464,7 +22468,7 @@ XML3D.createClass(PickNormalRenderPass, BaseRenderPass, {
 module.exports = PickNormalRenderPass;
 
 
-},{"./base.js":112}],117:[function(require,module,exports){
+},{"./base.js":113}],118:[function(require,module,exports){
 var BaseRenderPass = require("./base.js");
 
 var PickObjectRenderPass = function (renderInterface, output, opt) {
@@ -22552,7 +22556,7 @@ XML3D.extend(PickObjectRenderPass.prototype, {
 module.exports = PickObjectRenderPass;
 
 
-},{"./base.js":112}],118:[function(require,module,exports){
+},{"./base.js":113}],119:[function(require,module,exports){
 var BaseRenderPass = require("./base.js");
 
 var PickPositionRenderPass = function (renderInterface, output, opt) {
@@ -22629,7 +22633,7 @@ XML3D.createClass(PickPositionRenderPass, BaseRenderPass, {
 module.exports = PickPositionRenderPass;
 
 
-},{"./base.js":112}],119:[function(require,module,exports){
+},{"./base.js":113}],120:[function(require,module,exports){
 var SceneRenderPass = require("./scene-pass.js");
 var ObjectSorter = require("../../renderer/tools/objectsorter.js");
 
@@ -22780,7 +22784,7 @@ XML3D.createClass(PointLightPass, SceneRenderPass, {
 module.exports = PointLightPass;
 
 
-},{"../../renderer/tools/objectsorter.js":84,"./scene-pass.js":120}],120:[function(require,module,exports){
+},{"../../renderer/tools/objectsorter.js":84,"./scene-pass.js":121}],121:[function(require,module,exports){
 var BaseRenderPass = require("./base.js");
 var Options = require("../../../utils/options.js");
 
@@ -22946,7 +22950,7 @@ function getGlobalFaceCullingSetter(mode) {
 
 module.exports = SceneRenderPass;
 
-},{"../../../utils/options.js":145,"./base.js":112}],121:[function(require,module,exports){
+},{"../../../utils/options.js":146,"./base.js":113}],122:[function(require,module,exports){
 var BaseRenderPass = require("./base.js");
 var VertexAttributePass = require("./vertexattribute-pass.js");
 var GLRenderTarget = require("../base/rendertarget.js").GLRenderTarget;
@@ -23086,7 +23090,7 @@ XML3D.extend(SSAOPass.prototype, {
 module.exports = SSAOPass;
 
 
-},{"../../../utils/options.js":145,"../base/fullscreenquad.js":87,"../base/rendertarget.js":90,"./base.js":112,"./vertexattribute-pass.js":122}],122:[function(require,module,exports){
+},{"../../../utils/options.js":146,"../base/fullscreenquad.js":87,"../base/rendertarget.js":90,"./base.js":113,"./vertexattribute-pass.js":123}],123:[function(require,module,exports){
 var SceneRenderPass = require("./scene-pass.js");
 
 var VertexAttributePass = function (renderInterface, output, opt) {
@@ -23123,7 +23127,7 @@ XML3D.extend(VertexAttributePass.prototype, {
 module.exports = VertexAttributePass;
 
 
-},{"./scene-pass.js":120}],123:[function(require,module,exports){
+},{"./scene-pass.js":121}],124:[function(require,module,exports){
 var BaseRenderTree = function (renderInterface) {
     this.mainRenderPass = null;
     this.renderInterface = renderInterface;
@@ -23138,7 +23142,7 @@ XML3D.extend(BaseRenderTree.prototype, {
 module.exports = BaseRenderTree;
 
 
-},{}],124:[function(require,module,exports){
+},{}],125:[function(require,module,exports){
 var BaseRenderTree = require("./base.js");
 var GLRenderTarget = require("../base/rendertarget.js").GLRenderTarget;
 var GLCubeMapRenderTarget = require("../base/rendertarget.js").GLCubeMapRenderTarget;
@@ -23265,7 +23269,7 @@ XML3D.extend(ForwardRenderTree.prototype, {
 module.exports = ForwardRenderTree;
 
 
-},{"../../renderer/scene/constants.js":72,"../base/rendertarget.js":90,"../materials/events.js":96,"../render-passes/boxblur.js":113,"../render-passes/forward.js":114,"../render-passes/light-pass.js":115,"../render-passes/pointlight-pass.js":119,"../render-passes/ssao-pass.js":121,"../render-passes/vertexattribute-pass.js":122,"./base.js":123}],125:[function(require,module,exports){
+},{"../../renderer/scene/constants.js":72,"../base/rendertarget.js":90,"../materials/events.js":97,"../render-passes/boxblur.js":114,"../render-passes/forward.js":115,"../render-passes/light-pass.js":116,"../render-passes/pointlight-pass.js":120,"../render-passes/ssao-pass.js":122,"../render-passes/vertexattribute-pass.js":123,"./base.js":124}],126:[function(require,module,exports){
 var GLContext = require("./base/context.js");
 var GLScene = require("./scene/glscene.js");
 var GLScaledRenderTarget = require("./base/rendertarget.js").GLScaledRenderTarget;
@@ -23620,7 +23624,7 @@ XML3D.extend(GLRenderer.prototype, {
 
 module.exports = GLRenderer;
 
-},{"../../base/formathandler.js":22,"../../contrib/glu.js":25,"../../utils/options.js":145,"../renderer/tools/datachangelistener.js":82,"./base/context.js":86,"./base/rendertarget.js":90,"./render-interface.js":111,"./render-passes/pick-normal.js":116,"./render-passes/pick-object.js":117,"./render-passes/pick-position.js":118,"./render-trees/forward.js":124,"./scene/glscene.js":128}],126:[function(require,module,exports){
+},{"../../base/formathandler.js":22,"../../contrib/glu.js":25,"../../utils/options.js":146,"../renderer/tools/datachangelistener.js":82,"./base/context.js":86,"./base/rendertarget.js":90,"./render-interface.js":112,"./render-passes/pick-normal.js":117,"./render-passes/pick-object.js":118,"./render-passes/pick-position.js":119,"./render-trees/forward.js":125,"./scene/glscene.js":129}],127:[function(require,module,exports){
 var XflowMesh = require("../xflow/xflow-mesh.js");
 
 /**
@@ -23646,7 +23650,7 @@ module.exports = DrawableFactory;
 
 
 
-},{"../xflow/xflow-mesh.js":133}],127:[function(require,module,exports){
+},{"../xflow/xflow-mesh.js":134}],128:[function(require,module,exports){
 var lightModels = {
     point: {
         parameters: [ "pointLightPosition", "pointLightAttenuation", "pointLightIntensity", "pointLightOn", "pointLightCastShadow", "pointLightMatrix", "pointLightShadowBias", "pointLightNearFar", "pointLightShadowMap"]
@@ -23665,7 +23669,7 @@ module.exports = {
     ALL_PARAMETERS: ALL_PARAMETERS
 };
 
-},{}],128:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 var Scene = require("./../../renderer/scene/scene.js");
 var DrawableFactory = require("./drawable-factory.js");
 var C = require("./../../renderer/scene/constants.js");
@@ -23922,7 +23926,7 @@ XML3D.extend(GLScene.prototype, {
 module.exports = GLScene;
 
 
-},{"../../../utils/options.js":145,"../materials/shadercomposerfactory.js":100,"../materials/shadowmap-service":101,"./../../renderer/scene/constants.js":72,"./../../renderer/scene/scene.js":81,"./../../renderer/tools/frustum.js":83,"./drawable-factory.js":126}],129:[function(require,module,exports){
+},{"../../../utils/options.js":146,"../materials/shadercomposerfactory.js":101,"../materials/shadowmap-service":102,"./../../renderer/scene/constants.js":72,"./../../renderer/scene/scene.js":81,"./../../renderer/tools/frustum.js":83,"./drawable-factory.js":127}],130:[function(require,module,exports){
 var ShaderUtils = require("./shader-utils.js");
 var ShaderDescriptor = require("../materials/urn/shader-descriptor.js");
 var URNShaderClosure = require("../materials/urn/urnshaderclosure.js");
@@ -24001,7 +24005,7 @@ XML3D.extend(ProgramFactory.prototype, {
 module.exports = ProgramFactory;
 
 
-},{"../materials/urn/shader-descriptor.js":106,"../materials/urn/urnshaderclosure.js":108,"./shader-utils.js":130}],130:[function(require,module,exports){
+},{"../materials/urn/shader-descriptor.js":107,"../materials/urn/urnshaderclosure.js":109,"./shader-utils.js":131}],131:[function(require,module,exports){
 var FRAGMENT_HEADER = ["#ifdef GL_FRAGMENT_PRECISION_HIGH", "precision highp float;", "#else", "precision mediump float;", "#endif // GL_FRAGMENT_PRECISION_HIGH", "\n"].join("\n");
 
 module.exports = {
@@ -24010,7 +24014,7 @@ module.exports = {
     }
 };
 
-},{}],131:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
 var SystemNotifier = {
     node: null,
 
@@ -24030,8 +24034,9 @@ var SystemNotifier = {
 
 module.exports = SystemNotifier;
 
-},{}],132:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 var XC = require("../../../xflow/interface/constants.js");
+var GL = require("../constants.js");
 
 function convertToJSArray(value) {
     var jsArray = [value.length];
@@ -24049,17 +24054,17 @@ function convertToJSArray(value) {
 var createElementBuffer = function (context, data, maxIndex) {
     var gl = context.gl;
     var bufferData = data;
-    var glType = gl.UNSIGNED_INT;
+    var glType = GL.UNSIGNED_INT;
 
     if (maxIndex < (1 << 8)) {
-        glType = gl.UNSIGNED_BYTE;
+        glType = GL.UNSIGNED_BYTE;
         bufferData = new Uint8Array(data);
     } else if (maxIndex < (1 << 16)) {
-        glType = gl.UNSIGNED_SHORT;
+        glType = GL.UNSIGNED_SHORT;
         bufferData = new Uint16Array(data);
     } else if (!context.extensions["OES_element_index_uint"]) {
         XML3D.debug.logError("Trying to use index data with indices larger than 65535, but this is not supported on your platform. Indexing errors will occur.");
-        glType = gl.UNSIGNED_SHORT;
+        glType = GL.UNSIGNED_SHORT;
         bufferData = new Uint16Array(data);
     }
 
@@ -24088,7 +24093,6 @@ var createArrayBuffer = function (context, data) {
 };
 
 var getGLTypeFromArray = function (array) {
-    var GL = window.WebGLRenderingContext;
     if (array instanceof Int8Array)
         return GL.BYTE;
     if (array instanceof Uint8Array)
@@ -24261,7 +24265,7 @@ module.exports = {
     }
 };
 
-},{"../../../xflow/interface/constants.js":149}],133:[function(require,module,exports){
+},{"../../../xflow/interface/constants.js":150,"../constants.js":94}],134:[function(require,module,exports){
 var DrawableClosure = require("../../renderer/scene/drawableclosure.js");
 var GLMesh = require("../base/mesh.js");
 var XflowUtils = require("./utils.js");
@@ -24269,6 +24273,7 @@ var EVENT_TYPE = require("../../renderer/scene/constants.js").EVENT_TYPE;
 var MaterialEvents = require("../materials/events.js");
 var XC = require("../../../xflow/interface/constants.js");
 var ComputeRequest = require("../../../xflow/interface/request.js").ComputeRequest;
+var GL = require("../constants.js");
 
 var CHANGE_STATE = {
     NOTHING_CHANGED: 0,
@@ -24286,7 +24291,7 @@ var READY_STATE = DrawableClosure.READY_STATE;
 
 var MESH_PARAMETERS = {};
 
-MESH_PARAMETERS[WebGLRenderingContext.TRIANGLES] = {
+MESH_PARAMETERS[GL.TRIANGLES] = {
     attributeData: {"position": XC.DATA_TYPE.FLOAT3}, typeData: {
         "index": XC.DATA_TYPE.INT, "solid": XC.DATA_TYPE.BOOL, "vertexCount": XC.DATA_TYPE.INT
     }, bboxFix: {
@@ -24295,10 +24300,10 @@ MESH_PARAMETERS[WebGLRenderingContext.TRIANGLES] = {
         "position": XC.DATA_TYPE.FLOAT3
     }
 };
-MESH_PARAMETERS[WebGLRenderingContext.LINE_STRIP] = MESH_PARAMETERS[WebGLRenderingContext.TRIANGLES];
-MESH_PARAMETERS[WebGLRenderingContext.LINES] = MESH_PARAMETERS[WebGLRenderingContext.TRIANGLES];
-MESH_PARAMETERS[WebGLRenderingContext.POINTS] = MESH_PARAMETERS[WebGLRenderingContext.TRIANGLES];
-MESH_PARAMETERS[WebGLRenderingContext.TRIANGLE_STRIP] = MESH_PARAMETERS[WebGLRenderingContext.TRIANGLES];
+MESH_PARAMETERS[GL.LINE_STRIP] = MESH_PARAMETERS[GL.TRIANGLES];
+MESH_PARAMETERS[GL.LINES] = MESH_PARAMETERS[GL.TRIANGLES];
+MESH_PARAMETERS[GL.POINTS] = MESH_PARAMETERS[GL.TRIANGLES];
+MESH_PARAMETERS[GL.TRIANGLE_STRIP] = MESH_PARAMETERS[GL.TRIANGLES];
 
 
 /**
@@ -24673,7 +24678,7 @@ XML3D.createClass(XflowMesh, DrawableClosure, {
 module.exports = XflowMesh;
 
 
-},{"../../../xflow/interface/constants.js":149,"../../../xflow/interface/request.js":152,"../../renderer/scene/constants.js":72,"../../renderer/scene/drawableclosure.js":73,"../base/mesh.js":88,"../materials/events.js":96,"./utils.js":132}],134:[function(require,module,exports){
+},{"../../../xflow/interface/constants.js":150,"../../../xflow/interface/request.js":153,"../../renderer/scene/constants.js":72,"../../renderer/scene/drawableclosure.js":73,"../base/mesh.js":88,"../constants.js":94,"../materials/events.js":97,"./utils.js":133}],135:[function(require,module,exports){
 
 /**
  * Creates an instance of XML3DBox. XML3DBox represents an axis-aligned box,
@@ -24841,7 +24846,7 @@ XML3DBox.prototype.extend = function(that)
 
 module.exports = XML3DBox;
 
-},{}],135:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 var XC = require("../xflow/interface/constants.js");
 var Resource = require("../base/resourcemanager.js").Resource;
 
@@ -25014,7 +25019,7 @@ module.exports = {
     XML3DDataResult: XML3DDataResult,
     XML3DDataObserver: XML3DDataObserver
 };
-},{"../base/resourcemanager.js":23,"../xflow/interface/constants.js":149}],136:[function(require,module,exports){
+},{"../base/resourcemanager.js":23,"../xflow/interface/constants.js":150}],137:[function(require,module,exports){
 
 /**
  * Configure array properties
@@ -25301,7 +25306,7 @@ p.translate = function(x, y, z) {
 module.exports = XML3DMatrix;
 
 
-},{}],137:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
 
 /** returns an XML3DRay that has an origin and a direction.
 *
@@ -25380,7 +25385,7 @@ p.toString = function() {
 
 module.exports = XML3DRay;
 
-},{}],138:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
 
 function orthogonal(v) {
     if ((Math.abs(v._data[1]) >= 0.9*Math.abs(v._data[0])) && (Math.abs(v._data[2]) >= 0.9*Math.abs(v._data[0])))
@@ -25671,7 +25676,7 @@ p.setFromBasis = function(xAxis, yAxis, zAxis) {
 };
 
 module.exports = XML3DRotation;
-},{}],139:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 
 /**
  * Configure array properties
@@ -25900,7 +25905,7 @@ p.normalize = function() {
 };
 
 module.exports = XML3DVec3;
-},{}],140:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 // Add convienent array methods if non-existant
 if (!Array.forEach) {
     Array.forEach = function(array, fun, thisp) {
@@ -25965,7 +25970,7 @@ if (!Array.isArray) {
     };
 }
 
-},{}],141:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 var CSSMatrix = require("./cssMatrix.js");
 
 var css = {};
@@ -26055,7 +26060,7 @@ css.convertCssToMat4 = function (cssMatrix, m) {
 module.exports = css;
 
 
-},{"./cssMatrix.js":142}],142:[function(require,module,exports){
+},{"./cssMatrix.js":143}],143:[function(require,module,exports){
 
 /**
  *  class FirminCSSMatrix
@@ -26882,7 +26887,7 @@ FirminCSSMatrix.prototype.toString = function() {
 module.exports = FirminCSSMatrix;
 
 
-},{}],143:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
 var printStackTrace = require("../contrib/stacktrace-0.4.js");
 var Options = require("./options.js");
 
@@ -27013,7 +27018,7 @@ var Options = require("./options.js");
 
 }(module));
 
-},{"../contrib/stacktrace-0.4.js":26,"./options.js":145}],144:[function(require,module,exports){
+},{"../contrib/stacktrace-0.4.js":26,"./options.js":146}],145:[function(require,module,exports){
 // utils/misc.js
 
 window.requestAnimFrame = (function(){
@@ -27168,7 +27173,7 @@ window.requestAnimFrame = (function(){
     };
 }(module.exports));
 
-},{}],145:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 (function (ns) {
 
     /**
@@ -27275,7 +27280,7 @@ window.requestAnimFrame = (function(){
 
 }(module));
 
-},{}],146:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 (function(exports) {
     /**
      * Class URI
@@ -27475,7 +27480,7 @@ window.requestAnimFrame = (function(){
 
 }(module.exports));
 
-},{}],147:[function(require,module,exports){
+},{}],148:[function(require,module,exports){
 //TODO: Helpful API methods concerning WebCL will be added when needed. Please provide feedback!
 
 /**
@@ -28345,7 +28350,7 @@ window.requestAnimFrame = (function(){
 
 }(module.exports));
 
-},{}],148:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 var assert = require("assert");
 
 // Error Callbacks:
@@ -28443,7 +28448,7 @@ module.exports = {
 
 
 
-},{"assert":11}],149:[function(require,module,exports){
+},{"assert":11}],150:[function(require,module,exports){
 var C = {};
 
 C.EPSILON = 0.000001;
@@ -28676,7 +28681,7 @@ C.PROCESS_STATE = {
 
 module.exports = C;
 
-},{}],150:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 var Base = require("../base.js");
 var C = require("./constants.js");
 require("../../utils/array.js");
@@ -29348,7 +29353,7 @@ module.exports = {
     DataChangeNotifier: DataChangeNotifier
 };
 
-},{"../../utils/array.js":140,"../base.js":148,"./constants.js":149}],151:[function(require,module,exports){
+},{"../../utils/array.js":141,"../base.js":149,"./constants.js":150}],152:[function(require,module,exports){
 var C = require("./constants.js");
 var Mapping = require("./../processing/mapping.js");
 require("../../utils/array.js");
@@ -30355,7 +30360,7 @@ module.exports = {
     getComputeDataflowUrl: getComputeDataflowUrl
 };
 
-},{"../../utils/array.js":140,"../base.js":148,"../processing/channel-node.js":192,"../utils/utils.js":200,"./../processing/mapping.js":196,"./constants.js":149}],152:[function(require,module,exports){
+},{"../../utils/array.js":141,"../base.js":149,"../processing/channel-node.js":193,"../utils/utils.js":201,"./../processing/mapping.js":197,"./constants.js":150}],153:[function(require,module,exports){
 var Base = require("../base.js");
 var C = require("./constants.js");
 var DataNode = require("./graph.js").DataNode;
@@ -30586,7 +30591,7 @@ module.exports = {
     VertexShaderRequest: VertexShaderRequest
 };
 
-},{"../base.js":148,"./constants.js":149,"./graph.js":151}],153:[function(require,module,exports){
+},{"../base.js":149,"./constants.js":150,"./graph.js":152}],154:[function(require,module,exports){
 var C =require("../interface/constants.js");
 
 /**
@@ -31319,7 +31324,7 @@ function computeWorkGroupSize(targetInput) {
 
 module.exports = CLProgram;
 
-},{"../interface/constants.js":149}],154:[function(require,module,exports){
+},{"../interface/constants.js":150}],155:[function(require,module,exports){
 Xflow.registerOperator("xflow.add", {
     outputs: [  {type: 'float3', name: 'result'}],
     params:  [  {type: 'float3', source: 'value1'},
@@ -31334,7 +31339,7 @@ Xflow.registerOperator("xflow.add", {
     }
 });
 
-},{}],155:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 Xflow.registerOperator("xflow.bufferSelect", {
     outputs: [  {type: 'float3', name: 'result', noAlloc: true}],
     params:  [  {type: 'float3', source: 'trueOption', array: true},
@@ -31347,7 +31352,7 @@ Xflow.registerOperator("xflow.bufferSelect", {
     }
 });
 
-},{}],156:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 Xflow.registerOperator("xflow.clampImage", {
     outputs: [ {type: 'texture', name : 'result', sizeof : 'image', formatType: 'ImageData'} ],
     params:  [ {type: 'texture', source : 'image'},
@@ -31370,7 +31375,7 @@ Xflow.registerOperator("xflow.clampImage", {
     }
 });
 
-},{}],157:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 // Code portions from http://www.html5rocks.com/en/tutorials/canvas/imagefilters/
 
 (function() {
@@ -31444,7 +31449,7 @@ Xflow.registerOperator("xflow.clampImage", {
 
 })();
 
-},{}],158:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 Xflow.registerOperator("xflow.createIGIndex", {
     outputs:[
         //{type:'int', name:'index', customAlloc:true },
@@ -31482,7 +31487,7 @@ Xflow.registerOperator("xflow.createIGIndex", {
     }
 });
 
-},{}],159:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 Xflow.registerOperator("xflow.createTransform", {
     outputs: [  {type: 'float4x4', name: 'result'}],
     params:  [  {type: 'float3', source: 'translation', optional: true},
@@ -31505,7 +31510,7 @@ Xflow.registerOperator("xflow.createTransform", {
     }
 });
 
-},{}],160:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 Xflow.registerOperator("xflow.createTransformInv", {
     outputs: [  {type: 'float4x4', name: 'result'}],
     params:  [  {type: 'float3', source: 'translation', optional: true},
@@ -31527,7 +31532,7 @@ Xflow.registerOperator("xflow.createTransformInv", {
     }
 });
 
-},{}],161:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 (function(){
 
 var c_CubePositions =  [
@@ -31617,7 +31622,7 @@ Xflow.registerOperator("xflow.debug.createSkinCubes", {
 
 }());
 
-},{}],162:[function(require,module,exports){
+},{}],163:[function(require,module,exports){
 Xflow.registerOperator("xflow.flipNormal", {
     outputs: [  {type: 'float3', name: 'result'}],
     params:  [  {type: 'float3', source: 'value'}],
@@ -31627,7 +31632,7 @@ Xflow.registerOperator("xflow.flipNormal", {
     }
 });
 
-},{}],163:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 Xflow.registerOperator("xflow.flipVerticalImage", {
     outputs: [ {type: 'texture', name : 'result', sizeof : 'image'} ],
     params:  [ {type: 'texture', source : 'image'} ],
@@ -31653,7 +31658,7 @@ Xflow.registerOperator("xflow.flipVerticalImage", {
     }
 });
 
-},{}],164:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 Xflow.registerOperator("xflow.forwardKinematics", {
     outputs: [  {type: 'float4x4',  name: 'result', customAlloc: true}],
     params:  [  {type: 'int',       source: 'parent', array: true },
@@ -31703,7 +31708,7 @@ Xflow.registerOperator("xflow.forwardKinematics", {
     }
 });
 
-},{}],165:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 Xflow.registerOperator("xflow.forwardKinematicsInv", {
     outputs: [  {type: 'float4x4',  name: 'result', customAlloc: true}],
     params:  [  {type: 'int',       source: 'parent', array: true },
@@ -31754,7 +31759,7 @@ Xflow.registerOperator("xflow.forwardKinematicsInv", {
     }
 });
 
-},{}],166:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 // Based on: http://web.archive.org/web/20100310063925/http://dem.ocracy.org/libero/photobooth/
 
 Xflow.registerOperator("xflow.funMirrorImage", {
@@ -31816,7 +31821,7 @@ Xflow.registerOperator("xflow.funMirrorImage", {
     }
 });
 
-},{}],167:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 
 function fetch(result, value, index, components){
     for(var i = 0; i < index.length; ++i) {
@@ -31913,7 +31918,7 @@ Xflow.registerOperator("xflow.get", {
     }
 });
 
-},{}],168:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 Xflow.registerOperator("xflow.grayscaleImage", {
     outputs: [ {type: 'texture', name : 'result', sizeof : 'image'} ],
     params:  [ {type: 'texture', source : 'image'} ],
@@ -31938,7 +31943,7 @@ Xflow.registerOperator("xflow.grayscaleImage", {
     }
 });
 
-},{}],169:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 require("./add.js");
 require("./bufferSelect.js");
 require("./clampImage.js");
@@ -31972,7 +31977,7 @@ require("./slerpseq.js");
 require("./sobelImage.js");
 require("./sub3.js");
 
-},{"./add.js":154,"./bufferSelect.js":155,"./clampImage.js":156,"./convoluteImage.js":157,"./createIGIndex.js":158,"./createTransform.js":159,"./createTransformInv.js":160,"./debug.js":161,"./flipNormal.js":162,"./flipVerticalImage.js":163,"./forwardKinematics.js":164,"./forwardKinematicsInv.js":165,"./funMirrorImage.js":166,"./get.js":167,"./grayscaleImage.js":168,"./lerp3seq.js":170,"./magnitudeImage.js":171,"./merge3.js":172,"./morph3.js":173,"./mul4x4.js":174,"./noiseImage.js":175,"./normalize3.js":176,"./popartImage.js":177,"./rgbePNGtoFloat.js":178,"./selectBool.js":179,"./selectTransform.js":180,"./sepiaImage.js":181,"./skinDirection.js":182,"./skinPosition.js":183,"./slerpseq.js":184,"./sobelImage.js":185,"./sub3.js":186}],170:[function(require,module,exports){
+},{"./add.js":155,"./bufferSelect.js":156,"./clampImage.js":157,"./convoluteImage.js":158,"./createIGIndex.js":159,"./createTransform.js":160,"./createTransformInv.js":161,"./debug.js":162,"./flipNormal.js":163,"./flipVerticalImage.js":164,"./forwardKinematics.js":165,"./forwardKinematicsInv.js":166,"./funMirrorImage.js":167,"./get.js":168,"./grayscaleImage.js":169,"./lerp3seq.js":171,"./magnitudeImage.js":172,"./merge3.js":173,"./morph3.js":174,"./mul4x4.js":175,"./noiseImage.js":176,"./normalize3.js":177,"./popartImage.js":178,"./rgbePNGtoFloat.js":179,"./selectBool.js":180,"./selectTransform.js":181,"./sepiaImage.js":182,"./skinDirection.js":183,"./skinPosition.js":184,"./slerpseq.js":185,"./sobelImage.js":186,"./sub3.js":187}],171:[function(require,module,exports){
 var binarySearch = require("../../utils/utils").binarySearch;
 var XC = require("../../interface/constants.js");
 
@@ -32049,7 +32054,7 @@ Xflow.registerOperator("xflow.lerpKeys", {
 
 
 
-},{"../../interface/constants.js":149,"../../utils/utils":200}],171:[function(require,module,exports){
+},{"../../interface/constants.js":150,"../../utils/utils":201}],172:[function(require,module,exports){
 Xflow.registerOperator("xflow.magnitudeImage", {
     outputs: [ {type: 'texture', name : 'result', sizeof : 'image1'} ],
     params:  [
@@ -32071,7 +32076,7 @@ Xflow.registerOperator("xflow.magnitudeImage", {
     }
 });
 
-},{}],172:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 
 Xflow.registerOperator("xflow.merge3", {
     outputs: [{name: 'result', tupleSize: '16'}],
@@ -32116,7 +32121,7 @@ Xflow.registerOperator("xflow.merge8", {
     }
 });
 
-},{}],173:[function(require,module,exports){
+},{}],174:[function(require,module,exports){
 
 Xflow.registerOperator("xflow.morph", {
     outputs: [{type: 'float3', name: 'result'}],
@@ -32141,7 +32146,7 @@ Xflow.registerOperator("xflow.morph", {
     }
 });
 
-},{}],174:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 Xflow.registerOperator("xflow.mul", {
     outputs: [  {type: 'float4x4', name: 'result'}],
     params:  [  {type: 'float4x4', source: 'value1'},
@@ -32156,7 +32161,7 @@ Xflow.registerOperator("xflow.mul", {
     }
 });
 
-},{}],175:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 
 Xflow.registerOperator("xflow.noiseImage", {
     outputs: [ {type: 'texture', name : 'image', customAlloc: true} ],
@@ -32235,7 +32240,7 @@ Xflow.registerOperator("xflow.noiseImage", {
     }
 });
 
-},{}],176:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 
 Xflow.registerOperator("xflow.normalize", {
     outputs: [  {type: 'float3', name: 'result'}],
@@ -32254,7 +32259,7 @@ Xflow.registerOperator("xflow.normalize", {
     }
 });
 
-},{}],177:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
 
 // Based on http://kodemongki.blogspot.de/2011/06/kameraku-custom-shader-effects-example.html
 Xflow.registerOperator("xflow.popartImage", {
@@ -32294,7 +32299,7 @@ Xflow.registerOperator("xflow.popartImage", {
     }
 });
 
-},{}],178:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 var SamplerConfig = require("../../interface/data.js").SamplerConfig;
 var XC = require("../../interface/constants.js");
 
@@ -32338,7 +32343,7 @@ Xflow.registerOperator("xflow.rgbePNGtoFloat", {
     }
 });
 
-},{"../../interface/constants.js":149,"../../interface/data.js":150}],179:[function(require,module,exports){
+},{"../../interface/constants.js":150,"../../interface/data.js":151}],180:[function(require,module,exports){
 
 Xflow.registerOperator("xflow.selectBool", {
     outputs: [ {type: 'bool', name : 'result', customAlloc: true} ],
@@ -32357,7 +32362,7 @@ Xflow.registerOperator("xflow.selectBool", {
     }
 });
 
-},{}],180:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 
 Xflow.registerOperator("xflow.selectTransform", {
     outputs: [ {type: 'float4x4', name : 'result', customAlloc: true} ],
@@ -32406,7 +32411,7 @@ Xflow.registerOperator("xflow.selectTransform", {
     }
 });
 
-},{}],181:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 
 Xflow.registerOperator("xflow.sepiaImage", {
     outputs: [ {type: 'texture', name : 'result', sizeof : 'image'} ],
@@ -32434,7 +32439,7 @@ Xflow.registerOperator("xflow.sepiaImage", {
     }
 });
 
-},{}],182:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 
 Xflow.registerOperator("xflow.skinDirection", {
     outputs: [  {type: 'float3', name: 'result' }],
@@ -32469,7 +32474,7 @@ Xflow.registerOperator("xflow.skinDirection", {
     }
 });
 
-},{}],183:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 
 Xflow.registerOperator("xflow.skinPosition", {
     outputs: [  {type: 'float3', name: 'result' }],
@@ -32503,7 +32508,7 @@ Xflow.registerOperator("xflow.skinPosition", {
     }
 });
 
-},{}],184:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 var binarySearch = require("../../utils/utils").binarySearch;
 var XC = require("../../interface/constants.js");
 
@@ -32554,7 +32559,7 @@ Xflow.registerOperator("xflow.slerpKeys", {
     }
 });
 
-},{"../../interface/constants.js":149,"../../utils/utils":200}],185:[function(require,module,exports){
+},{"../../interface/constants.js":150,"../../utils/utils":201}],186:[function(require,module,exports){
 
 // Code portions from http://www.html5rocks.com/en/tutorials/canvas/imagefilters/
 (function() {
@@ -32873,7 +32878,7 @@ Xflow.registerOperator("xflow.sobelImage", {
     }
 });
 
-},{}],186:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 
 Xflow.registerOperator("xflow.sub", {
     outputs: [  {type: 'float3', name: 'result'}],
@@ -32895,7 +32900,7 @@ Xflow.registerOperator("xflow.sub", {
     }
 });
 
-},{}],187:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 /**
  * One operator execution within the @see{OperatorList}.
  * @param operator
@@ -33034,7 +33039,7 @@ OperatorEntry.prototype.getKey = function () {
 
 module.exports = OperatorEntry;
 
-},{}],188:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 var C = require("../interface/constants.js");
 var Base = require("../base.js");
 
@@ -33267,7 +33272,7 @@ OperatorList.prototype.allocateOutput = function (programData, async) {
 
 module.exports = OperatorList;
 
-},{"../base.js":148,"../interface/constants.js":149}],189:[function(require,module,exports){
+},{"../base.js":149,"../interface/constants.js":150}],190:[function(require,module,exports){
 var Base = require("../base.js");
 var C = require("../interface/constants.js");
 
@@ -33379,7 +33384,7 @@ module.exports = {
     getOperators: getOperators
 };
 
-},{"../base.js":148,"../interface/constants.js":149}],190:[function(require,module,exports){
+},{"../base.js":149,"../interface/constants.js":150}],191:[function(require,module,exports){
 var Base = require("../base.js");
 var C = require("../interface/constants.js");
 var VSProgram = require("./vs-program.js");
@@ -33677,7 +33682,7 @@ module.exports = {
     ProgramInputConnection: ProgramInputConnection
 };
 
-},{"../base.js":148,"../interface/constants.js":149,"./cl-program.js":153,"./vs-program.js":191}],191:[function(require,module,exports){
+},{"../base.js":149,"../interface/constants.js":150,"./cl-program.js":154,"./vs-program.js":192}],192:[function(require,module,exports){
 var Base = require("../base.js");
 var C = require("../interface/constants.js");
 var Utils = require("../utils/utils.js");
@@ -33952,7 +33957,7 @@ function getGLSLType(xflowType){
 
 module.exports = VSProgram;
 
-},{"../base.js":148,"../interface/constants.js":149,"../processing/vs-connect.js":199,"../utils/utils.js":200}],192:[function(require,module,exports){
+},{"../base.js":149,"../interface/constants.js":150,"../processing/vs-connect.js":200,"../utils/utils.js":201}],193:[function(require,module,exports){
 var Base = require("../base.js");
 var C = require("../interface/constants.js");
 var Channels = require("./channel.js");
@@ -34516,7 +34521,7 @@ module.exports = {
     Substitution: Substitution
 };
 
-},{"../base.js":148,"../interface/constants.js":149,"../operator/operator.js":189,"./channel.js":193,"./data-slot.js":194,"./process-node.js":197}],193:[function(require,module,exports){
+},{"../base.js":149,"../interface/constants.js":150,"../operator/operator.js":190,"./channel.js":194,"./data-slot.js":195,"./process-node.js":198}],194:[function(require,module,exports){
 var Base = require("../base.js");
 var C = require("../interface/constants.js");
 var BufferEntry = require("../interface/data.js").BufferEntry;
@@ -34898,7 +34903,7 @@ module.exports = {
     ChannelMap: ChannelMap
 };
 
-},{"../base.js":148,"../interface/constants.js":149,"../interface/data.js":150}],194:[function(require,module,exports){
+},{"../base.js":149,"../interface/constants.js":150,"../interface/data.js":151}],195:[function(require,module,exports){
 var Base = require("../base.js");
 var C = require("../interface/constants.js");
 
@@ -34953,7 +34958,7 @@ DataSlot.prototype.notifyOnChange = function(state){
 
 module.exports = DataSlot;
 
-},{"../base.js":148,"../interface/constants.js":149}],195:[function(require,module,exports){
+},{"../base.js":149,"../interface/constants.js":150}],196:[function(require,module,exports){
 var Base = require("../base.js");
 var C = require("../interface/constants.js");
 var OperatorList = require("../operator/operator-list.js");
@@ -35378,7 +35383,7 @@ function blockSubtree(cData, node){
 
 module.exports = Executor;
 
-},{"../base.js":148,"../interface/constants.js":149,"../operator/operator-entry.js":187,"../operator/operator-list.js":188,"../operator/operator.js":189,"../operator/program.js":190,"../utils/utils.js":200}],196:[function(require,module,exports){
+},{"../base.js":149,"../interface/constants.js":150,"../operator/operator-entry.js":188,"../operator/operator-list.js":189,"../operator/operator.js":190,"../operator/program.js":191,"../utils/utils.js":201}],197:[function(require,module,exports){
 var Base = require("../base.js");
 var C = require("./../interface/constants.js");
 
@@ -35736,7 +35741,7 @@ module.exports = {
     Mapping: Mapping
 };
 
-},{"../base.js":148,"./../interface/constants.js":149}],197:[function(require,module,exports){
+},{"../base.js":149,"./../interface/constants.js":150}],198:[function(require,module,exports){
 var Base = require("../base.js");
 var C = require("../interface/constants.js");
 var utils = require("../utils/utils.js");
@@ -36237,7 +36242,7 @@ module.exports = {
 };
 
 
-},{"../base.js":148,"../interface/constants.js":149,"../interface/data.js":150,"../operator/operator.js":189,"../processing/data-slot.js":194,"../utils/utils.js":200,"./executor.js":195,"./result.js":198}],198:[function(require,module,exports){
+},{"../base.js":149,"../interface/constants.js":150,"../interface/data.js":151,"../operator/operator.js":190,"../processing/data-slot.js":195,"../utils/utils.js":201,"./executor.js":196,"./result.js":199}],199:[function(require,module,exports){
 var Base = require("../base.js");
 require("../../utils/array.js");
 
@@ -36377,7 +36382,7 @@ module.exports = {
     VSDataResult: VSDataResult
 };
 
-},{"../../utils/array.js":140,"../base.js":148}],199:[function(require,module,exports){
+},{"../../utils/array.js":141,"../base.js":149}],200:[function(require,module,exports){
 var Base = require("../base.js");
 var C = require("./../interface/constants.js");
 
@@ -36542,7 +36547,7 @@ module.exports = {
     VertexShader: VertexShader
 };
 
-},{"../base.js":148,"../operator/operator.js":189,"./../interface/constants.js":149}],200:[function(require,module,exports){
+},{"../base.js":149,"../operator/operator.js":190,"./../interface/constants.js":150}],201:[function(require,module,exports){
 require("../../utils/array.js");
 var set = {};
 
@@ -36664,7 +36669,7 @@ module.exports = {
     nameset: nameset,
     binarySearch: binarySearch
 }
-},{"../../utils/array.js":140}],201:[function(require,module,exports){
+},{"../../utils/array.js":141}],202:[function(require,module,exports){
 
 module.exports = require("./init.js");
-},{"./init.js":43}]},{},[201]);
+},{"./init.js":43}]},{},[202]);
